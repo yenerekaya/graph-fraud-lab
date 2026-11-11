@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "graph-fraud-lab"
-version = "0.1.0"
+version = "0.2.0"
 description = "An explainable, reproducible transaction graph investigation lab"
 requires-python = ">=3.11"
 dependencies = ["networkx>=3.4,<4"]
@@ -16,7 +16,7 @@ dev = ["pytest>=8,<10"]
 graph-fraud-lab = "graph_fraud_lab.cli:main"
 
 [tool.setuptools.package-data]
-graph_fraud_lab = ["dashboard.html"]
+graph_fraud_lab = ["dashboard.html", "dashboard-core.js", "*.cypher"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

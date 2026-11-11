@@ -6,6 +6,8 @@
 
 An explainable transaction-graph investigation project built with Python and NetworkX. Generates synthetic transfers, detects temporal graph patterns, and exports a standalone interactive investigation dashboard. No API keys, cloud account, or frontend build step required.
 
+Version 0.2 adds transaction search and filters, CSV export, chronological route investigation, and Neo4j import files.
+
 [Prebuilt investigation dashboard](artifacts/index.html) — download the HTML file and open it in your browser.
 
 ## Quick start
@@ -42,6 +44,9 @@ NetworkX's [bounded directed cycle enumeration](https://networkx.org/documentati
 - Account selection through graph nodes or keyboard-accessible table buttons.
 - Account scores, rule explanations, amounts, and timestamped transaction evidence.
 - Search, minimum-score filtering, a flagged-account view, and reset controls.
+- Paginated transaction explorer with ID/account search, UTC date bounds, and minimum amounts.
+- Filtered CSV download (spreadsheet formula prefixes are neutralized).
+- Earliest-arrival chronological routes, highlighted in blue on the network.
 - Account-level precision, recall, and confusion-matrix counts for generated data.
 
 The table's minimum-score slider filters the investigation queue; it does not change the detector's review threshold. Re-run the CLI with `--threshold 60` to change that threshold and regenerate metrics.
@@ -53,6 +58,24 @@ The seed-42 fixture has 80 accounts and 444 transfers across seven days. Seven a
 A legitimate merchant also receives a burst of payments. It deliberately triggers fan-in: a graph signal alone cannot establish intent. Evaluation counts this as a false positive.
 
 Ground truth is generated separately and passed **only** to the evaluator. The detector accepts accounts and transactions; it does not read labels. `artifacts/evaluation.json` records account-level metrics at the configured threshold. `docs/seed-sweep.json` reports the same fixed rules over 10 seeds as a reproducibility check. All seeds share the same planted motifs; this is not an independent test set or a real-world performance benchmark.
+
+## Investigate a transfer route
+
+```bash
+graph-fraud-lab --trace R0 R4 --max-hops 6 --output artifacts
+```
+
+Exports `route.json` with the earliest-arriving route through strictly increasing transaction timestamps, bounded by the hop limit (1–12). A later direct transfer can lose to an earlier multi-hop route. This is a temporal walk: accounts may recur. Amounts are not required to match, so the route is evidence of connectivity, not a claim that the same money moved along it.
+
+The dashboard route finder uses the transaction explorer's current filters. Date fields cover whole UTC days, inclusive at both displayed endpoints; internally the upper bound is next-day midnight, exclusive. Transaction filters affect the table, download, and route finder. They do not recalculate account scores, metrics, or the full network.
+
+## Neo4j export
+
+Every run creates `neo4j/gfl_accounts.csv`, `neo4j/gfl_transfers.csv`, `neo4j/import.cypher`, and `neo4j/queries.cypher`.
+
+The graph model is `(GFLAccount)-[:SENT]->(GFLTransfer)-[:TO]->(GFLAccount)`. Individual transfers are nodes with unique IDs, preserving parallel payments. Account scores and rule names are imported from Python.
+
+See [Neo4j import instructions](docs/neo4j.md). Export generation and CSV round trips are tested; a live Neo4j import has not been verified in this environment.
 
 ## Bring your own synthetic data
 
@@ -81,20 +104,27 @@ Account IDs and transaction IDs must be unique. Transfers require declared, dist
 | `analysis.json` | Scores, graph edges, rule configuration and evidence |
 | `ground_truth.json` | Scenario labels, generated datasets only |
 | `evaluation.json` | Account-level evaluation and limitations |
+| `route.json` | Chronological route, when `--trace` is provided |
+| `neo4j/` | Accounts/transfers CSVs, import script and example queries |
 
 ## Development
 
 ```bash
 python -m pytest
+node tests/dashboard-core.test.cjs
+node tests/dashboard-controller.test.cjs
 ```
 
-Tests cover chronological vs. topological rings, amount constraints, counterparties, legitimate refunds, repeated edges, invalid inputs, evaluation, and safe dashboard embedding of untrusted IDs. GitHub Actions runs the suite on Python 3.11–3.13 and checks that the CLI exports successfully.
+Tests cover chronological vs. topological rings, amount constraints, counterparties, legitimate refunds, repeated edges, invalid inputs, evaluation, safe dashboard embedding, chronological routes, date boundaries, CSV export, and Neo4j record preservation. Node tests check the investigation algorithms and dashboard controller with DOM/canvas stubs; these do not replace visual browser verification. GitHub Actions runs the suite on Python 3.11–3.13 and checks that the CLI exports successfully.
 
 ```text
 src/graph_fraud_lab/
   data.py          # deterministic fixture generator
   detect.py        # graph construction, temporal rules and evaluator
   cli.py           # input, exports and dashboard assembly
+  investigate.py   # transaction filters and chronological routes
+  neo4j.py         # CSV and Cypher export
+  dashboard-core.js # testable browser investigation algorithms
   dashboard.html   # dependency-free investigation interface
 ```
 
@@ -102,7 +132,7 @@ src/graph_fraud_lab/
 
 This is a small offline investigation lab. It uses whole-dataset batch analysis and hand-set rule weights, with no training or calibrated probability model. Bounded cycle enumeration can still become expensive on dense graphs; temporal scans are designed for small fixtures. It is not a streaming engine.
 
-Possible extensions: Neo4j import and equivalent Cypher queries; a time-based evaluation dataset; comparison against a feature-based anomaly detector; amount-normalized multi-currency input.
+Possible extensions: live Neo4j integration tests; a time-based evaluation dataset; comparison against a feature-based anomaly detector; amount-normalized multi-currency input.
 
 ## Author
 
