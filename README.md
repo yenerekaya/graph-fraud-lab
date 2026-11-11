@@ -112,6 +112,7 @@ Account IDs and transaction IDs must be unique. Transfers require declared, dist
 ```bash
 python -m pytest
 node tests/dashboard-core.test.cjs
+node tests/dashboard-layout.test.cjs
 node tests/dashboard-controller.test.cjs
 ```
 

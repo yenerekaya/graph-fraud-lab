@@ -21,3 +21,11 @@ The integration suite is opt-in; default CI does not start Neo4j. See [Neo4j ins
 ## Browser limitation
 
 Real browser interactions and visual layout remain **unverified**. The browser tool rejected local preview access because of a saved user permission setting. Controller stubs do not verify browser rendering, hit-testing or actual file downloads. No browser result is claimed.
+
+## Follow-up from a user-provided browser screenshot
+
+The supplied desktop screenshot confirmed that the dashboard rendered the expected 80 accounts, 444 transfers, 8 flagged accounts and 430 connections. It also exposed a graph layout defect: individual coordinate clamping accumulated nodes along the viewport borders.
+
+The simulation now runs in free coordinates and its output is fitted uniformly into the viewport. A regression test runs 230 simulation steps at three viewport sizes and verifies bounds, distinct positions, geometry preservation and absence of border accumulation. Controller tests also verify node selection using the displayed coordinates (14 smoke assertions total).
+
+The corrected layout still needs confirmation in a refreshed browser screenshot. Automated real-browser interaction and actual CSV downloading remain unverified because of the saved permission block.
