@@ -1,0 +1,125 @@
+{
+  "note": "Shared planted motifs, fixed rules; reproducibility check, not held-out validation.",
+  "results": [
+    {
+      "seed": 0,
+      "unit": "account",
+      "threshold": 50,
+      "true_positive": 7,
+      "false_positive": 1,
+      "true_negative": 72,
+      "false_negative": 0,
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.9333
+    },
+    {
+      "seed": 1,
+      "unit": "account",
+      "threshold": 50,
+      "true_positive": 7,
+      "false_positive": 1,
+      "true_negative": 72,
+      "false_negative": 0,
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.9333
+    },
+    {
+      "seed": 2,
+      "unit": "account",
+      "threshold": 50,
+      "true_positive": 7,
+      "false_positive": 1,
+      "true_negative": 72,
+      "false_negative": 0,
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.9333
+    },
+    {
+      "seed": 3,
+      "unit": "account",
+      "threshold": 50,
+      "true_positive": 7,
+      "false_positive": 1,
+      "true_negative": 72,
+      "false_negative": 0,
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.9333
+    },
+    {
+      "seed": 4,
+      "unit": "account",
+      "threshold": 50,
+      "true_positive": 7,
+      "false_positive": 1,
+      "true_negative": 72,
+      "false_negative": 0,
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.9333
+    },
+    {
+      "seed": 5,
+      "unit": "account",
+      "threshold": 50,
+      "true_positive": 7,
+      "false_positive": 1,
+      "true_negative": 72,
+      "false_negative": 0,
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.9333
+    },
+    {
+      "seed": 6,
+      "unit": "account",
+      "threshold": 50,
+      "true_positive": 7,
+      "false_positive": 1,
+      "true_negative": 72,
+      "false_negative": 0,
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.9333
+    },
+    {
+      "seed": 7,
+      "unit": "account",
+      "threshold": 50,
+      "true_positive": 7,
+      "false_positive": 1,
+      "true_negative": 72,
+      "false_negative": 0,
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.9333
+    },
+    {
+      "seed": 8,
+      "unit": "account",
+      "threshold": 50,
+      "true_positive": 7,
+      "false_positive": 1,
+      "true_negative": 72,
+      "false_negative": 0,
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.9333
+    },
+    {
+      "seed": 9,
+      "unit": "account",
+      "threshold": 50,
+      "true_positive": 7,
+      "false_positive": 1,
+      "true_negative": 72,
+      "false_negative": 0,
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1": 0.9333
+    }
+  ]
+}

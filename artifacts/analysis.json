@@ -1,0 +1,6577 @@
+{
+  "config": {
+    "cycle_max_length": 5,
+    "cycle_window_minutes": 30,
+    "fan_window_minutes": 10,
+    "fan_min_counterparties": 6,
+    "fan_min_amount": 500,
+    "pass_window_minutes": 30,
+    "pass_min_amount": 2000,
+    "pass_min_ratio": 0.9,
+    "threshold": 50
+  },
+  "nodes": [
+    {
+      "id": "R1",
+      "score": 100,
+      "signals": [
+        {
+          "rule": "rapid_cycle",
+          "points": 65,
+          "reason": "Chronological 5-account ring within 30 minutes; amounts within 10%.",
+          "transaction_ids": [
+            "T0420",
+            "T0421",
+            "T0422",
+            "T0423",
+            "T0424"
+          ]
+        },
+        {
+          "rule": "pass_through",
+          "points": 60,
+          "reason": "Forwarded 99.5% of an incoming transfer within 30 minutes.",
+          "transaction_ids": [
+            "T0420",
+            "T0421"
+          ]
+        }
+      ],
+      "in_degree": 1,
+      "out_degree": 1,
+      "incoming": 4800,
+      "outgoing": 4775
+    },
+    {
+      "id": "R2",
+      "score": 100,
+      "signals": [
+        {
+          "rule": "rapid_cycle",
+          "points": 65,
+          "reason": "Chronological 5-account ring within 30 minutes; amounts within 10%.",
+          "transaction_ids": [
+            "T0420",
+            "T0421",
+            "T0422",
+            "T0423",
+            "T0424"
+          ]
+        },
+        {
+          "rule": "pass_through",
+          "points": 60,
+          "reason": "Forwarded 99.5% of an incoming transfer within 30 minutes.",
+          "transaction_ids": [
+            "T0421",
+            "T0422"
+          ]
+        }
+      ],
+      "in_degree": 1,
+      "out_degree": 1,
+      "incoming": 4775,
+      "outgoing": 4750
+    },
+    {
+      "id": "R3",
+      "score": 100,
+      "signals": [
+        {
+          "rule": "rapid_cycle",
+          "points": 65,
+          "reason": "Chronological 5-account ring within 30 minutes; amounts within 10%.",
+          "transaction_ids": [
+            "T0420",
+            "T0421",
+            "T0422",
+            "T0423",
+            "T0424"
+          ]
+        },
+        {
+          "rule": "pass_through",
+          "points": 60,
+          "reason": "Forwarded 99.5% of an incoming transfer within 30 minutes.",
+          "transaction_ids": [
+            "T0422",
+            "T0423"
+          ]
+        }
+      ],
+      "in_degree": 1,
+      "out_degree": 1,
+      "incoming": 4750,
+      "outgoing": 4725
+    },
+    {
+      "id": "R4",
+      "score": 100,
+      "signals": [
+        {
+          "rule": "rapid_cycle",
+          "points": 65,
+          "reason": "Chronological 5-account ring within 30 minutes; amounts within 10%.",
+          "transaction_ids": [
+            "T0420",
+            "T0421",
+            "T0422",
+            "T0423",
+            "T0424"
+          ]
+        },
+        {
+          "rule": "pass_through",
+          "points": 60,
+          "reason": "Forwarded 99.5% of an incoming transfer within 30 minutes.",
+          "transaction_ids": [
+            "T0423",
+            "T0424"
+          ]
+        }
+      ],
+      "in_degree": 1,
+      "out_degree": 1,
+      "incoming": 4725,
+      "outgoing": 4700
+    },
+    {
+      "id": "R0",
+      "score": 65,
+      "signals": [
+        {
+          "rule": "rapid_cycle",
+          "points": 65,
+          "reason": "Chronological 5-account ring within 30 minutes; amounts within 10%.",
+          "transaction_ids": [
+            "T0420",
+            "T0421",
+            "T0422",
+            "T0423",
+            "T0424"
+          ]
+        }
+      ],
+      "in_degree": 1,
+      "out_degree": 1,
+      "incoming": 4700,
+      "outgoing": 4800
+    },
+    {
+      "id": "MULE",
+      "score": 60,
+      "signals": [
+        {
+          "rule": "pass_through",
+          "points": 60,
+          "reason": "Forwarded 98.5% of an incoming transfer within 30 minutes.",
+          "transaction_ids": [
+            "T0434",
+            "T0435"
+          ]
+        }
+      ],
+      "in_degree": 1,
+      "out_degree": 1,
+      "incoming": 6500,
+      "outgoing": 6400
+    },
+    {
+      "id": "COLLECTOR",
+      "score": 55,
+      "signals": [
+        {
+          "rule": "fan_in",
+          "points": 55,
+          "reason": "9 distinct counterparties in 10 minutes; each transfer >= 500 units.",
+          "transaction_ids": [
+            "T0425",
+            "T0426",
+            "T0427",
+            "T0428",
+            "T0429",
+            "T0430",
+            "T0431",
+            "T0432",
+            "T0433"
+          ]
+        }
+      ],
+      "in_degree": 9,
+      "out_degree": 0,
+      "incoming": 8820,
+      "outgoing": 0
+    },
+    {
+      "id": "SHOP",
+      "score": 55,
+      "signals": [
+        {
+          "rule": "fan_in",
+          "points": 55,
+          "reason": "8 distinct counterparties in 10 minutes; each transfer >= 500 units.",
+          "transaction_ids": [
+            "T0436",
+            "T0437",
+            "T0438",
+            "T0439",
+            "T0440",
+            "T0441",
+            "T0442",
+            "T0443"
+          ]
+        }
+      ],
+      "in_degree": 8,
+      "out_degree": 0,
+      "incoming": 5760,
+      "outgoing": 0
+    },
+    {
+      "id": "A000",
+      "score": 0,
+      "signals": [],
+      "in_degree": 3,
+      "out_degree": 8,
+      "incoming": 2589.76,
+      "outgoing": 8217.51
+    },
+    {
+      "id": "A001",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 7,
+      "incoming": 3244.16,
+      "outgoing": 5954.79
+    },
+    {
+      "id": "A002",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 6,
+      "incoming": 3680.63,
+      "outgoing": 4996.17
+    },
+    {
+      "id": "A003",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 7,
+      "incoming": 3483.18,
+      "outgoing": 4606.7
+    },
+    {
+      "id": "A004",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 6,
+      "incoming": 5027.31,
+      "outgoing": 4334.61
+    },
+    {
+      "id": "A005",
+      "score": 0,
+      "signals": [],
+      "in_degree": 7,
+      "out_degree": 5,
+      "incoming": 5322.21,
+      "outgoing": 6465.31
+    },
+    {
+      "id": "A006",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 5,
+      "incoming": 4050.27,
+      "outgoing": 4106.62
+    },
+    {
+      "id": "A007",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 5,
+      "incoming": 2049.45,
+      "outgoing": 3954.68
+    },
+    {
+      "id": "A008",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 4,
+      "incoming": 2492.2,
+      "outgoing": 3274.0
+    },
+    {
+      "id": "A009",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 11,
+      "incoming": 5294.48,
+      "outgoing": 8107.3
+    },
+    {
+      "id": "A010",
+      "score": 0,
+      "signals": [],
+      "in_degree": 7,
+      "out_degree": 11,
+      "incoming": 5347.99,
+      "outgoing": 6866.57
+    },
+    {
+      "id": "A011",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 7,
+      "incoming": 5611.88,
+      "outgoing": 7043.19
+    },
+    {
+      "id": "A012",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 5,
+      "incoming": 3945.14,
+      "outgoing": 3872.37
+    },
+    {
+      "id": "A013",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 5,
+      "incoming": 5475.17,
+      "outgoing": 3314.65
+    },
+    {
+      "id": "A014",
+      "score": 0,
+      "signals": [],
+      "in_degree": 3,
+      "out_degree": 6,
+      "incoming": 2744.69,
+      "outgoing": 5097.8
+    },
+    {
+      "id": "A015",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 2,
+      "incoming": 5033.02,
+      "outgoing": 1574.07
+    },
+    {
+      "id": "A016",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 8,
+      "incoming": 4708.79,
+      "outgoing": 5739.66
+    },
+    {
+      "id": "A017",
+      "score": 0,
+      "signals": [],
+      "in_degree": 9,
+      "out_degree": 4,
+      "incoming": 6496.65,
+      "outgoing": 1743.97
+    },
+    {
+      "id": "A018",
+      "score": 0,
+      "signals": [],
+      "in_degree": 9,
+      "out_degree": 2,
+      "incoming": 5766.35,
+      "outgoing": 1324.73
+    },
+    {
+      "id": "A019",
+      "score": 0,
+      "signals": [],
+      "in_degree": 8,
+      "out_degree": 8,
+      "incoming": 5980.08,
+      "outgoing": 4448.36
+    },
+    {
+      "id": "A020",
+      "score": 0,
+      "signals": [],
+      "in_degree": 7,
+      "out_degree": 5,
+      "incoming": 3473.88,
+      "outgoing": 9285.32
+    },
+    {
+      "id": "A021",
+      "score": 0,
+      "signals": [],
+      "in_degree": 3,
+      "out_degree": 6,
+      "incoming": 8128.99,
+      "outgoing": 5651.07
+    },
+    {
+      "id": "A022",
+      "score": 0,
+      "signals": [],
+      "in_degree": 3,
+      "out_degree": 2,
+      "incoming": 1758.86,
+      "outgoing": 1446.32
+    },
+    {
+      "id": "A023",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 4,
+      "incoming": 1909.25,
+      "outgoing": 1700.71
+    },
+    {
+      "id": "A024",
+      "score": 0,
+      "signals": [],
+      "in_degree": 2,
+      "out_degree": 10,
+      "incoming": 1588.78,
+      "outgoing": 5192.63
+    },
+    {
+      "id": "A025",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 4,
+      "incoming": 2105.15,
+      "outgoing": 2396.17
+    },
+    {
+      "id": "A026",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 4,
+      "incoming": 2395.1,
+      "outgoing": 2778.37
+    },
+    {
+      "id": "A027",
+      "score": 0,
+      "signals": [],
+      "in_degree": 7,
+      "out_degree": 4,
+      "incoming": 4691.88,
+      "outgoing": 3235.97
+    },
+    {
+      "id": "A028",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 9,
+      "incoming": 3130.24,
+      "outgoing": 8523.42
+    },
+    {
+      "id": "A029",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 4,
+      "incoming": 3270.62,
+      "outgoing": 2703.55
+    },
+    {
+      "id": "A030",
+      "score": 0,
+      "signals": [],
+      "in_degree": 8,
+      "out_degree": 10,
+      "incoming": 6880.97,
+      "outgoing": 4799.97
+    },
+    {
+      "id": "A031",
+      "score": 0,
+      "signals": [],
+      "in_degree": 7,
+      "out_degree": 5,
+      "incoming": 3900.44,
+      "outgoing": 3934.22
+    },
+    {
+      "id": "A032",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 8,
+      "incoming": 3197.86,
+      "outgoing": 5976.79
+    },
+    {
+      "id": "A033",
+      "score": 0,
+      "signals": [],
+      "in_degree": 8,
+      "out_degree": 5,
+      "incoming": 6690.33,
+      "outgoing": 4254.48
+    },
+    {
+      "id": "A034",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 7,
+      "incoming": 3277.84,
+      "outgoing": 4637.95
+    },
+    {
+      "id": "A035",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 6,
+      "incoming": 5202.24,
+      "outgoing": 3677.37
+    },
+    {
+      "id": "A036",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 8,
+      "incoming": 2612.29,
+      "outgoing": 4764.6
+    },
+    {
+      "id": "A037",
+      "score": 0,
+      "signals": [],
+      "in_degree": 10,
+      "out_degree": 6,
+      "incoming": 5766.76,
+      "outgoing": 5136.66
+    },
+    {
+      "id": "A038",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 7,
+      "incoming": 3485.94,
+      "outgoing": 4359.78
+    },
+    {
+      "id": "A039",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 6,
+      "incoming": 3436.7,
+      "outgoing": 3964.23
+    },
+    {
+      "id": "A040",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 5,
+      "incoming": 5409.99,
+      "outgoing": 4313.67
+    },
+    {
+      "id": "A041",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 9,
+      "incoming": 2805.45,
+      "outgoing": 5452.77
+    },
+    {
+      "id": "A042",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 7,
+      "incoming": 3515.04,
+      "outgoing": 5029.37
+    },
+    {
+      "id": "A043",
+      "score": 0,
+      "signals": [],
+      "in_degree": 8,
+      "out_degree": 4,
+      "incoming": 6100.24,
+      "outgoing": 1934.93
+    },
+    {
+      "id": "A044",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 7,
+      "incoming": 2971.15,
+      "outgoing": 6007.46
+    },
+    {
+      "id": "A045",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 5,
+      "incoming": 2791.35,
+      "outgoing": 6204.09
+    },
+    {
+      "id": "A046",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 5,
+      "incoming": 2930.0,
+      "outgoing": 3648.41
+    },
+    {
+      "id": "A047",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 5,
+      "incoming": 4320.67,
+      "outgoing": 3789.18
+    },
+    {
+      "id": "A048",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 5,
+      "incoming": 4208.83,
+      "outgoing": 4721.04
+    },
+    {
+      "id": "A049",
+      "score": 0,
+      "signals": [],
+      "in_degree": 9,
+      "out_degree": 6,
+      "incoming": 7047.56,
+      "outgoing": 4327.46
+    },
+    {
+      "id": "A050",
+      "score": 0,
+      "signals": [],
+      "in_degree": 8,
+      "out_degree": 2,
+      "incoming": 7225.98,
+      "outgoing": 1198.06
+    },
+    {
+      "id": "A051",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 6,
+      "incoming": 5184.66,
+      "outgoing": 2523.52
+    },
+    {
+      "id": "A052",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 4,
+      "incoming": 3519.27,
+      "outgoing": 2235.29
+    },
+    {
+      "id": "A053",
+      "score": 0,
+      "signals": [],
+      "in_degree": 3,
+      "out_degree": 9,
+      "incoming": 2080.43,
+      "outgoing": 6691.06
+    },
+    {
+      "id": "A054",
+      "score": 0,
+      "signals": [],
+      "in_degree": 9,
+      "out_degree": 5,
+      "incoming": 9239.35,
+      "outgoing": 2844.89
+    },
+    {
+      "id": "A055",
+      "score": 0,
+      "signals": [],
+      "in_degree": 3,
+      "out_degree": 9,
+      "incoming": 2344.46,
+      "outgoing": 9400.68
+    },
+    {
+      "id": "A056",
+      "score": 0,
+      "signals": [],
+      "in_degree": 7,
+      "out_degree": 9,
+      "incoming": 4215.19,
+      "outgoing": 7065.04
+    },
+    {
+      "id": "A057",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 6,
+      "incoming": 4905.05,
+      "outgoing": 5181.35
+    },
+    {
+      "id": "A058",
+      "score": 0,
+      "signals": [],
+      "in_degree": 10,
+      "out_degree": 4,
+      "incoming": 6726.06,
+      "outgoing": 1968.31
+    },
+    {
+      "id": "A059",
+      "score": 0,
+      "signals": [],
+      "in_degree": 7,
+      "out_degree": 6,
+      "incoming": 6803.21,
+      "outgoing": 4540.74
+    },
+    {
+      "id": "A060",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 6,
+      "incoming": 5463.55,
+      "outgoing": 4680.32
+    },
+    {
+      "id": "A061",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 2,
+      "incoming": 2906.63,
+      "outgoing": 1275.44
+    },
+    {
+      "id": "A062",
+      "score": 0,
+      "signals": [],
+      "in_degree": 8,
+      "out_degree": 5,
+      "incoming": 4042.33,
+      "outgoing": 4335.62
+    },
+    {
+      "id": "A063",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 1,
+      "incoming": 4946.15,
+      "outgoing": 722.24
+    },
+    {
+      "id": "A064",
+      "score": 0,
+      "signals": [],
+      "in_degree": 2,
+      "out_degree": 10,
+      "incoming": 2263.85,
+      "outgoing": 7757.61
+    },
+    {
+      "id": "A065",
+      "score": 0,
+      "signals": [],
+      "in_degree": 3,
+      "out_degree": 6,
+      "incoming": 1645.0,
+      "outgoing": 5314.67
+    },
+    {
+      "id": "A066",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 4,
+      "incoming": 4228.66,
+      "outgoing": 3130.37
+    },
+    {
+      "id": "A067",
+      "score": 0,
+      "signals": [],
+      "in_degree": 10,
+      "out_degree": 4,
+      "incoming": 8480.54,
+      "outgoing": 2824.82
+    },
+    {
+      "id": "A068",
+      "score": 0,
+      "signals": [],
+      "in_degree": 4,
+      "out_degree": 4,
+      "incoming": 2877.85,
+      "outgoing": 4715.53
+    },
+    {
+      "id": "A069",
+      "score": 0,
+      "signals": [],
+      "in_degree": 9,
+      "out_degree": 5,
+      "incoming": 6122.97,
+      "outgoing": 4762.3
+    },
+    {
+      "id": "A070",
+      "score": 0,
+      "signals": [],
+      "in_degree": 5,
+      "out_degree": 9,
+      "incoming": 1708.94,
+      "outgoing": 4959.36
+    },
+    {
+      "id": "A071",
+      "score": 0,
+      "signals": [],
+      "in_degree": 6,
+      "out_degree": 8,
+      "incoming": 4146.62,
+      "outgoing": 6086.32
+    }
+  ],
+  "edges": [
+    {
+      "source": "A000",
+      "target": "COLLECTOR",
+      "amount": 800,
+      "count": 1
+    },
+    {
+      "source": "A000",
+      "target": "A035",
+      "amount": 1204.6,
+      "count": 1
+    },
+    {
+      "source": "A000",
+      "target": "A063",
+      "amount": 1050.88,
+      "count": 1
+    },
+    {
+      "source": "A000",
+      "target": "A033",
+      "amount": 1361.21,
+      "count": 1
+    },
+    {
+      "source": "A000",
+      "target": "A026",
+      "amount": 435.96,
+      "count": 1
+    },
+    {
+      "source": "A000",
+      "target": "A042",
+      "amount": 1084.14,
+      "count": 1
+    },
+    {
+      "source": "A000",
+      "target": "A020",
+      "amount": 983.43,
+      "count": 1
+    },
+    {
+      "source": "A000",
+      "target": "A066",
+      "amount": 1297.29,
+      "count": 1
+    },
+    {
+      "source": "A001",
+      "target": "COLLECTOR",
+      "amount": 845,
+      "count": 1
+    },
+    {
+      "source": "A001",
+      "target": "A070",
+      "amount": 433.14,
+      "count": 1
+    },
+    {
+      "source": "A001",
+      "target": "A053",
+      "amount": 1154.82,
+      "count": 1
+    },
+    {
+      "source": "A001",
+      "target": "A018",
+      "amount": 585.77,
+      "count": 1
+    },
+    {
+      "source": "A001",
+      "target": "A011",
+      "amount": 1298.39,
+      "count": 1
+    },
+    {
+      "source": "A001",
+      "target": "A033",
+      "amount": 760.47,
+      "count": 1
+    },
+    {
+      "source": "A001",
+      "target": "A058",
+      "amount": 877.2,
+      "count": 1
+    },
+    {
+      "source": "A002",
+      "target": "COLLECTOR",
+      "amount": 890,
+      "count": 1
+    },
+    {
+      "source": "A002",
+      "target": "A034",
+      "amount": 815.22,
+      "count": 1
+    },
+    {
+      "source": "A002",
+      "target": "A006",
+      "amount": 1105.78,
+      "count": 1
+    },
+    {
+      "source": "A002",
+      "target": "A045",
+      "amount": 1108.16,
+      "count": 1
+    },
+    {
+      "source": "A002",
+      "target": "A048",
+      "amount": 678.23,
+      "count": 1
+    },
+    {
+      "source": "A002",
+      "target": "A050",
+      "amount": 398.78,
+      "count": 1
+    },
+    {
+      "source": "A003",
+      "target": "A031",
+      "amount": 295.12,
+      "count": 1
+    },
+    {
+      "source": "A003",
+      "target": "A050",
+      "amount": 836.81,
+      "count": 1
+    },
+    {
+      "source": "A003",
+      "target": "COLLECTOR",
+      "amount": 935,
+      "count": 1
+    },
+    {
+      "source": "A003",
+      "target": "A005",
+      "amount": 467.64,
+      "count": 1
+    },
+    {
+      "source": "A003",
+      "target": "A023",
+      "amount": 397.11,
+      "count": 1
+    },
+    {
+      "source": "A003",
+      "target": "A049",
+      "amount": 483.86,
+      "count": 1
+    },
+    {
+      "source": "A003",
+      "target": "A018",
+      "amount": 1191.16,
+      "count": 1
+    },
+    {
+      "source": "A004",
+      "target": "COLLECTOR",
+      "amount": 980,
+      "count": 1
+    },
+    {
+      "source": "A004",
+      "target": "A038",
+      "amount": 1394.38,
+      "count": 1
+    },
+    {
+      "source": "A004",
+      "target": "A043",
+      "amount": 1229.42,
+      "count": 1
+    },
+    {
+      "source": "A004",
+      "target": "A037",
+      "amount": 298.2,
+      "count": 1
+    },
+    {
+      "source": "A004",
+      "target": "A016",
+      "amount": 112.78,
+      "count": 1
+    },
+    {
+      "source": "A004",
+      "target": "A047",
+      "amount": 319.83,
+      "count": 1
+    },
+    {
+      "source": "A005",
+      "target": "A066",
+      "amount": 436.25,
+      "count": 1
+    },
+    {
+      "source": "A005",
+      "target": "COLLECTOR",
+      "amount": 1025,
+      "count": 1
+    },
+    {
+      "source": "A005",
+      "target": "A049",
+      "amount": 1373.83,
+      "count": 1
+    },
+    {
+      "source": "A005",
+      "target": "A040",
+      "amount": 2355.74,
+      "count": 2
+    },
+    {
+      "source": "A005",
+      "target": "A057",
+      "amount": 1274.49,
+      "count": 1
+    },
+    {
+      "source": "A006",
+      "target": "COLLECTOR",
+      "amount": 1070,
+      "count": 1
+    },
+    {
+      "source": "A006",
+      "target": "A042",
+      "amount": 110.96,
+      "count": 1
+    },
+    {
+      "source": "A006",
+      "target": "A050",
+      "amount": 712.77,
+      "count": 1
+    },
+    {
+      "source": "A006",
+      "target": "A063",
+      "amount": 1169.32,
+      "count": 1
+    },
+    {
+      "source": "A006",
+      "target": "A016",
+      "amount": 1043.57,
+      "count": 1
+    },
+    {
+      "source": "A007",
+      "target": "COLLECTOR",
+      "amount": 1115,
+      "count": 1
+    },
+    {
+      "source": "A007",
+      "target": "A045",
+      "amount": 720.12,
+      "count": 1
+    },
+    {
+      "source": "A007",
+      "target": "A069",
+      "amount": 104.12,
+      "count": 1
+    },
+    {
+      "source": "A007",
+      "target": "A061",
+      "amount": 1189.27,
+      "count": 1
+    },
+    {
+      "source": "A007",
+      "target": "A006",
+      "amount": 826.17,
+      "count": 1
+    },
+    {
+      "source": "A008",
+      "target": "COLLECTOR",
+      "amount": 1160,
+      "count": 1
+    },
+    {
+      "source": "A008",
+      "target": "A011",
+      "amount": 1167.85,
+      "count": 1
+    },
+    {
+      "source": "A008",
+      "target": "A049",
+      "amount": 546.63,
+      "count": 1
+    },
+    {
+      "source": "A008",
+      "target": "A016",
+      "amount": 399.52,
+      "count": 1
+    },
+    {
+      "source": "A009",
+      "target": "A007",
+      "amount": 584.91,
+      "count": 2
+    },
+    {
+      "source": "A009",
+      "target": "A050",
+      "amount": 1209.23,
+      "count": 1
+    },
+    {
+      "source": "A009",
+      "target": "A010",
+      "amount": 464.51,
+      "count": 1
+    },
+    {
+      "source": "A009",
+      "target": "A051",
+      "amount": 521.37,
+      "count": 1
+    },
+    {
+      "source": "A009",
+      "target": "A018",
+      "amount": 1060.73,
+      "count": 1
+    },
+    {
+      "source": "A009",
+      "target": "A021",
+      "amount": 757.11,
+      "count": 1
+    },
+    {
+      "source": "A009",
+      "target": "A060",
+      "amount": 1098.5,
+      "count": 1
+    },
+    {
+      "source": "A009",
+      "target": "A031",
+      "amount": 160.62,
+      "count": 1
+    },
+    {
+      "source": "A009",
+      "target": "A020",
+      "amount": 23.69,
+      "count": 1
+    },
+    {
+      "source": "A009",
+      "target": "A022",
+      "amount": 1332.78,
+      "count": 1
+    },
+    {
+      "source": "A009",
+      "target": "A065",
+      "amount": 893.85,
+      "count": 1
+    },
+    {
+      "source": "A010",
+      "target": "A064",
+      "amount": 911.66,
+      "count": 1
+    },
+    {
+      "source": "A010",
+      "target": "A067",
+      "amount": 1365.02,
+      "count": 1
+    },
+    {
+      "source": "A010",
+      "target": "A023",
+      "amount": 114.56,
+      "count": 1
+    },
+    {
+      "source": "A010",
+      "target": "A002",
+      "amount": 373.18,
+      "count": 1
+    },
+    {
+      "source": "A010",
+      "target": "A036",
+      "amount": 731.32,
+      "count": 1
+    },
+    {
+      "source": "A010",
+      "target": "A070",
+      "amount": 424.59,
+      "count": 1
+    },
+    {
+      "source": "A010",
+      "target": "A017",
+      "amount": 228.15,
+      "count": 1
+    },
+    {
+      "source": "A010",
+      "target": "A054",
+      "amount": 207.27,
+      "count": 1
+    },
+    {
+      "source": "A010",
+      "target": "A030",
+      "amount": 1013.7,
+      "count": 1
+    },
+    {
+      "source": "A010",
+      "target": "A062",
+      "amount": 1146.11,
+      "count": 1
+    },
+    {
+      "source": "A010",
+      "target": "A020",
+      "amount": 351.01,
+      "count": 1
+    },
+    {
+      "source": "A011",
+      "target": "A054",
+      "amount": 1950.07,
+      "count": 3
+    },
+    {
+      "source": "A011",
+      "target": "A030",
+      "amount": 948.46,
+      "count": 1
+    },
+    {
+      "source": "A011",
+      "target": "A055",
+      "amount": 1185.39,
+      "count": 1
+    },
+    {
+      "source": "A011",
+      "target": "A035",
+      "amount": 1236.65,
+      "count": 1
+    },
+    {
+      "source": "A011",
+      "target": "A060",
+      "amount": 500.19,
+      "count": 1
+    },
+    {
+      "source": "A011",
+      "target": "A067",
+      "amount": 316.88,
+      "count": 1
+    },
+    {
+      "source": "A011",
+      "target": "A027",
+      "amount": 905.55,
+      "count": 1
+    },
+    {
+      "source": "A012",
+      "target": "A030",
+      "amount": 1244.42,
+      "count": 1
+    },
+    {
+      "source": "A012",
+      "target": "A026",
+      "amount": 883.21,
+      "count": 1
+    },
+    {
+      "source": "A012",
+      "target": "A056",
+      "amount": 407.18,
+      "count": 2
+    },
+    {
+      "source": "A012",
+      "target": "A007",
+      "amount": 575.62,
+      "count": 1
+    },
+    {
+      "source": "A012",
+      "target": "A009",
+      "amount": 761.94,
+      "count": 1
+    },
+    {
+      "source": "A013",
+      "target": "A011",
+      "amount": 544.3,
+      "count": 1
+    },
+    {
+      "source": "A013",
+      "target": "A062",
+      "amount": 1003.11,
+      "count": 1
+    },
+    {
+      "source": "A013",
+      "target": "A001",
+      "amount": 812.21,
+      "count": 1
+    },
+    {
+      "source": "A013",
+      "target": "A031",
+      "amount": 284.39,
+      "count": 1
+    },
+    {
+      "source": "A013",
+      "target": "A029",
+      "amount": 670.64,
+      "count": 1
+    },
+    {
+      "source": "A014",
+      "target": "A003",
+      "amount": 1245.23,
+      "count": 2
+    },
+    {
+      "source": "A014",
+      "target": "A044",
+      "amount": 613.28,
+      "count": 1
+    },
+    {
+      "source": "A014",
+      "target": "A068",
+      "amount": 1056.21,
+      "count": 1
+    },
+    {
+      "source": "A014",
+      "target": "A008",
+      "amount": 677.22,
+      "count": 1
+    },
+    {
+      "source": "A014",
+      "target": "A019",
+      "amount": 885.88,
+      "count": 1
+    },
+    {
+      "source": "A014",
+      "target": "A037",
+      "amount": 619.98,
+      "count": 1
+    },
+    {
+      "source": "A015",
+      "target": "A005",
+      "amount": 499.14,
+      "count": 1
+    },
+    {
+      "source": "A015",
+      "target": "A071",
+      "amount": 1074.93,
+      "count": 1
+    },
+    {
+      "source": "A016",
+      "target": "A060",
+      "amount": 1326.65,
+      "count": 1
+    },
+    {
+      "source": "A016",
+      "target": "A069",
+      "amount": 365.9,
+      "count": 1
+    },
+    {
+      "source": "A016",
+      "target": "A048",
+      "amount": 754.96,
+      "count": 1
+    },
+    {
+      "source": "A016",
+      "target": "A011",
+      "amount": 1275.29,
+      "count": 1
+    },
+    {
+      "source": "A016",
+      "target": "A064",
+      "amount": 1352.19,
+      "count": 1
+    },
+    {
+      "source": "A016",
+      "target": "A010",
+      "amount": 447.22,
+      "count": 1
+    },
+    {
+      "source": "A016",
+      "target": "A026",
+      "amount": 114.68,
+      "count": 1
+    },
+    {
+      "source": "A016",
+      "target": "A071",
+      "amount": 102.77,
+      "count": 1
+    },
+    {
+      "source": "A017",
+      "target": "A060",
+      "amount": 639.07,
+      "count": 1
+    },
+    {
+      "source": "A017",
+      "target": "A033",
+      "amount": 179.29,
+      "count": 1
+    },
+    {
+      "source": "A017",
+      "target": "A032",
+      "amount": 419.44,
+      "count": 1
+    },
+    {
+      "source": "A017",
+      "target": "A005",
+      "amount": 506.17,
+      "count": 1
+    },
+    {
+      "source": "A018",
+      "target": "A000",
+      "amount": 1251.87,
+      "count": 1
+    },
+    {
+      "source": "A018",
+      "target": "A017",
+      "amount": 72.86,
+      "count": 1
+    },
+    {
+      "source": "A019",
+      "target": "A009",
+      "amount": 428.19,
+      "count": 1
+    },
+    {
+      "source": "A019",
+      "target": "A030",
+      "amount": 1407.3400000000001,
+      "count": 2
+    },
+    {
+      "source": "A019",
+      "target": "A042",
+      "amount": 132.47,
+      "count": 1
+    },
+    {
+      "source": "A019",
+      "target": "A038",
+      "amount": 137.55,
+      "count": 1
+    },
+    {
+      "source": "A019",
+      "target": "A007",
+      "amount": 641.72,
+      "count": 1
+    },
+    {
+      "source": "A019",
+      "target": "A057",
+      "amount": 1329.38,
+      "count": 1
+    },
+    {
+      "source": "A019",
+      "target": "A027",
+      "amount": 108.64,
+      "count": 1
+    },
+    {
+      "source": "A019",
+      "target": "A055",
+      "amount": 263.07,
+      "count": 1
+    },
+    {
+      "source": "A020",
+      "target": "MULE",
+      "amount": 6500,
+      "count": 1
+    },
+    {
+      "source": "A020",
+      "target": "A047",
+      "amount": 510.27,
+      "count": 1
+    },
+    {
+      "source": "A020",
+      "target": "A006",
+      "amount": 950.08,
+      "count": 1
+    },
+    {
+      "source": "A020",
+      "target": "A056",
+      "amount": 781.32,
+      "count": 1
+    },
+    {
+      "source": "A020",
+      "target": "A059",
+      "amount": 543.65,
+      "count": 1
+    },
+    {
+      "source": "A021",
+      "target": "A014",
+      "amount": 1093.35,
+      "count": 1
+    },
+    {
+      "source": "A021",
+      "target": "A052",
+      "amount": 690.18,
+      "count": 1
+    },
+    {
+      "source": "A021",
+      "target": "A058",
+      "amount": 1168.2,
+      "count": 1
+    },
+    {
+      "source": "A021",
+      "target": "A022",
+      "amount": 128.98,
+      "count": 1
+    },
+    {
+      "source": "A021",
+      "target": "A032",
+      "amount": 1281.39,
+      "count": 1
+    },
+    {
+      "source": "A021",
+      "target": "A059",
+      "amount": 1288.97,
+      "count": 1
+    },
+    {
+      "source": "A022",
+      "target": "A059",
+      "amount": 1373.53,
+      "count": 1
+    },
+    {
+      "source": "A022",
+      "target": "A033",
+      "amount": 72.79,
+      "count": 1
+    },
+    {
+      "source": "A023",
+      "target": "A006",
+      "amount": 379.02,
+      "count": 1
+    },
+    {
+      "source": "A023",
+      "target": "A017",
+      "amount": 107.08,
+      "count": 1
+    },
+    {
+      "source": "A023",
+      "target": "A024",
+      "amount": 318.61,
+      "count": 1
+    },
+    {
+      "source": "A023",
+      "target": "A055",
+      "amount": 896.0,
+      "count": 1
+    },
+    {
+      "source": "A024",
+      "target": "A036",
+      "amount": 512.62,
+      "count": 1
+    },
+    {
+      "source": "A024",
+      "target": "A037",
+      "amount": 333.93,
+      "count": 1
+    },
+    {
+      "source": "A024",
+      "target": "A008",
+      "amount": 83.24,
+      "count": 1
+    },
+    {
+      "source": "A024",
+      "target": "A049",
+      "amount": 702.24,
+      "count": 1
+    },
+    {
+      "source": "A024",
+      "target": "A012",
+      "amount": 153.76,
+      "count": 1
+    },
+    {
+      "source": "A024",
+      "target": "A032",
+      "amount": 81.25,
+      "count": 1
+    },
+    {
+      "source": "A024",
+      "target": "A015",
+      "amount": 1329.63,
+      "count": 1
+    },
+    {
+      "source": "A024",
+      "target": "A041",
+      "amount": 854.91,
+      "count": 1
+    },
+    {
+      "source": "A024",
+      "target": "A040",
+      "amount": 184.99,
+      "count": 1
+    },
+    {
+      "source": "A024",
+      "target": "A047",
+      "amount": 956.06,
+      "count": 1
+    },
+    {
+      "source": "A025",
+      "target": "A017",
+      "amount": 1224.74,
+      "count": 1
+    },
+    {
+      "source": "A025",
+      "target": "A058",
+      "amount": 502.53,
+      "count": 1
+    },
+    {
+      "source": "A025",
+      "target": "A018",
+      "amount": 53.71,
+      "count": 1
+    },
+    {
+      "source": "A025",
+      "target": "A046",
+      "amount": 615.19,
+      "count": 1
+    },
+    {
+      "source": "A026",
+      "target": "A027",
+      "amount": 1142.01,
+      "count": 1
+    },
+    {
+      "source": "A026",
+      "target": "A043",
+      "amount": 300.96,
+      "count": 1
+    },
+    {
+      "source": "A026",
+      "target": "A034",
+      "amount": 777.92,
+      "count": 1
+    },
+    {
+      "source": "A026",
+      "target": "A053",
+      "amount": 557.48,
+      "count": 1
+    },
+    {
+      "source": "A027",
+      "target": "A029",
+      "amount": 717.39,
+      "count": 1
+    },
+    {
+      "source": "A027",
+      "target": "A069",
+      "amount": 1062.27,
+      "count": 1
+    },
+    {
+      "source": "A027",
+      "target": "A059",
+      "amount": 985.26,
+      "count": 1
+    },
+    {
+      "source": "A027",
+      "target": "A058",
+      "amount": 471.05,
+      "count": 1
+    },
+    {
+      "source": "A028",
+      "target": "A050",
+      "amount": 1378.54,
+      "count": 1
+    },
+    {
+      "source": "A028",
+      "target": "A041",
+      "amount": 1183.14,
+      "count": 1
+    },
+    {
+      "source": "A028",
+      "target": "A019",
+      "amount": 1273.61,
+      "count": 1
+    },
+    {
+      "source": "A028",
+      "target": "A003",
+      "amount": 930.85,
+      "count": 1
+    },
+    {
+      "source": "A028",
+      "target": "A066",
+      "amount": 544.92,
+      "count": 1
+    },
+    {
+      "source": "A028",
+      "target": "A017",
+      "amount": 1036.33,
+      "count": 1
+    },
+    {
+      "source": "A028",
+      "target": "A013",
+      "amount": 503.16,
+      "count": 1
+    },
+    {
+      "source": "A028",
+      "target": "A008",
+      "amount": 486.56,
+      "count": 1
+    },
+    {
+      "source": "A028",
+      "target": "A054",
+      "amount": 1186.31,
+      "count": 1
+    },
+    {
+      "source": "A029",
+      "target": "A045",
+      "amount": 322.23,
+      "count": 1
+    },
+    {
+      "source": "A029",
+      "target": "A004",
+      "amount": 1130.96,
+      "count": 1
+    },
+    {
+      "source": "A029",
+      "target": "A059",
+      "amount": 900.31,
+      "count": 1
+    },
+    {
+      "source": "A029",
+      "target": "A068",
+      "amount": 350.05,
+      "count": 1
+    },
+    {
+      "source": "A030",
+      "target": "A018",
+      "amount": 421.96,
+      "count": 1
+    },
+    {
+      "source": "A030",
+      "target": "A020",
+      "amount": 448.84,
+      "count": 1
+    },
+    {
+      "source": "A030",
+      "target": "SHOP",
+      "amount": 650,
+      "count": 1
+    },
+    {
+      "source": "A030",
+      "target": "A063",
+      "amount": 1279.7,
+      "count": 1
+    },
+    {
+      "source": "A030",
+      "target": "A038",
+      "amount": 188.15,
+      "count": 1
+    },
+    {
+      "source": "A030",
+      "target": "A041",
+      "amount": 41.78,
+      "count": 1
+    },
+    {
+      "source": "A030",
+      "target": "A013",
+      "amount": 1084.67,
+      "count": 1
+    },
+    {
+      "source": "A030",
+      "target": "A046",
+      "amount": 157.11,
+      "count": 1
+    },
+    {
+      "source": "A030",
+      "target": "A049",
+      "amount": 342.32,
+      "count": 1
+    },
+    {
+      "source": "A030",
+      "target": "A051",
+      "amount": 185.44,
+      "count": 1
+    },
+    {
+      "source": "A031",
+      "target": "SHOP",
+      "amount": 670,
+      "count": 1
+    },
+    {
+      "source": "A031",
+      "target": "A067",
+      "amount": 588.63,
+      "count": 1
+    },
+    {
+      "source": "A031",
+      "target": "A005",
+      "amount": 874.75,
+      "count": 1
+    },
+    {
+      "source": "A031",
+      "target": "A047",
+      "amount": 413.28,
+      "count": 1
+    },
+    {
+      "source": "A031",
+      "target": "A056",
+      "amount": 1387.56,
+      "count": 1
+    },
+    {
+      "source": "A032",
+      "target": "A017",
+      "amount": 886.98,
+      "count": 1
+    },
+    {
+      "source": "A032",
+      "target": "A061",
+      "amount": 177.44,
+      "count": 1
+    },
+    {
+      "source": "A032",
+      "target": "SHOP",
+      "amount": 690,
+      "count": 1
+    },
+    {
+      "source": "A032",
+      "target": "A025",
+      "amount": 259.43,
+      "count": 1
+    },
+    {
+      "source": "A032",
+      "target": "A058",
+      "amount": 1186.52,
+      "count": 1
+    },
+    {
+      "source": "A032",
+      "target": "A041",
+      "amount": 179.97,
+      "count": 1
+    },
+    {
+      "source": "A032",
+      "target": "A001",
+      "amount": 1260.49,
+      "count": 1
+    },
+    {
+      "source": "A032",
+      "target": "A047",
+      "amount": 1335.96,
+      "count": 1
+    },
+    {
+      "source": "A033",
+      "target": "A016",
+      "amount": 1307.9,
+      "count": 1
+    },
+    {
+      "source": "A033",
+      "target": "SHOP",
+      "amount": 710,
+      "count": 1
+    },
+    {
+      "source": "A033",
+      "target": "A067",
+      "amount": 1223.96,
+      "count": 1
+    },
+    {
+      "source": "A033",
+      "target": "A025",
+      "amount": 606.69,
+      "count": 1
+    },
+    {
+      "source": "A033",
+      "target": "A043",
+      "amount": 405.93,
+      "count": 1
+    },
+    {
+      "source": "A034",
+      "target": "SHOP",
+      "amount": 730,
+      "count": 1
+    },
+    {
+      "source": "A034",
+      "target": "A039",
+      "amount": 366.94,
+      "count": 1
+    },
+    {
+      "source": "A034",
+      "target": "A057",
+      "amount": 1269.32,
+      "count": 1
+    },
+    {
+      "source": "A034",
+      "target": "A000",
+      "amount": 410.32,
+      "count": 1
+    },
+    {
+      "source": "A034",
+      "target": "A068",
+      "amount": 1089.01,
+      "count": 1
+    },
+    {
+      "source": "A034",
+      "target": "A042",
+      "amount": 461.2,
+      "count": 1
+    },
+    {
+      "source": "A034",
+      "target": "A008",
+      "amount": 311.16,
+      "count": 1
+    },
+    {
+      "source": "A035",
+      "target": "A053",
+      "amount": 368.13,
+      "count": 1
+    },
+    {
+      "source": "A035",
+      "target": "A067",
+      "amount": 843.57,
+      "count": 1
+    },
+    {
+      "source": "A035",
+      "target": "SHOP",
+      "amount": 750,
+      "count": 1
+    },
+    {
+      "source": "A035",
+      "target": "A071",
+      "amount": 34.01,
+      "count": 1
+    },
+    {
+      "source": "A035",
+      "target": "A019",
+      "amount": 317.13,
+      "count": 1
+    },
+    {
+      "source": "A035",
+      "target": "A005",
+      "amount": 1364.53,
+      "count": 1
+    },
+    {
+      "source": "A036",
+      "target": "A009",
+      "amount": 909.64,
+      "count": 1
+    },
+    {
+      "source": "A036",
+      "target": "SHOP",
+      "amount": 770,
+      "count": 1
+    },
+    {
+      "source": "A036",
+      "target": "A058",
+      "amount": 118.23,
+      "count": 1
+    },
+    {
+      "source": "A036",
+      "target": "A056",
+      "amount": 191.61,
+      "count": 1
+    },
+    {
+      "source": "A036",
+      "target": "A029",
+      "amount": 1050.54,
+      "count": 1
+    },
+    {
+      "source": "A036",
+      "target": "A069",
+      "amount": 238.01,
+      "count": 1
+    },
+    {
+      "source": "A036",
+      "target": "A054",
+      "amount": 981.3,
+      "count": 1
+    },
+    {
+      "source": "A036",
+      "target": "A039",
+      "amount": 505.27,
+      "count": 1
+    },
+    {
+      "source": "A037",
+      "target": "A010",
+      "amount": 1200.34,
+      "count": 1
+    },
+    {
+      "source": "A037",
+      "target": "SHOP",
+      "amount": 790,
+      "count": 1
+    },
+    {
+      "source": "A037",
+      "target": "A045",
+      "amount": 537.28,
+      "count": 1
+    },
+    {
+      "source": "A037",
+      "target": "A014",
+      "amount": 578.94,
+      "count": 1
+    },
+    {
+      "source": "A037",
+      "target": "A043",
+      "amount": 1129.84,
+      "count": 1
+    },
+    {
+      "source": "A037",
+      "target": "A016",
+      "amount": 900.26,
+      "count": 1
+    },
+    {
+      "source": "A038",
+      "target": "A051",
+      "amount": 776.15,
+      "count": 1
+    },
+    {
+      "source": "A038",
+      "target": "A052",
+      "amount": 181.01,
+      "count": 1
+    },
+    {
+      "source": "A038",
+      "target": "A054",
+      "amount": 441.42,
+      "count": 1
+    },
+    {
+      "source": "A038",
+      "target": "A058",
+      "amount": 456.32,
+      "count": 1
+    },
+    {
+      "source": "A038",
+      "target": "A001",
+      "amount": 997.07,
+      "count": 1
+    },
+    {
+      "source": "A038",
+      "target": "A049",
+      "amount": 1197.76,
+      "count": 1
+    },
+    {
+      "source": "A038",
+      "target": "A036",
+      "amount": 310.05,
+      "count": 1
+    },
+    {
+      "source": "A039",
+      "target": "A046",
+      "amount": 1260.59,
+      "count": 1
+    },
+    {
+      "source": "A039",
+      "target": "A043",
+      "amount": 325.77,
+      "count": 1
+    },
+    {
+      "source": "A039",
+      "target": "A013",
+      "amount": 818.58,
+      "count": 1
+    },
+    {
+      "source": "A039",
+      "target": "A056",
+      "amount": 66.04,
+      "count": 1
+    },
+    {
+      "source": "A039",
+      "target": "A051",
+      "amount": 1393.31,
+      "count": 1
+    },
+    {
+      "source": "A039",
+      "target": "A030",
+      "amount": 99.94,
+      "count": 1
+    },
+    {
+      "source": "A040",
+      "target": "A030",
+      "amount": 386.55,
+      "count": 1
+    },
+    {
+      "source": "A040",
+      "target": "A015",
+      "amount": 1013.26,
+      "count": 1
+    },
+    {
+      "source": "A040",
+      "target": "A012",
+      "amount": 1178.06,
+      "count": 1
+    },
+    {
+      "source": "A040",
+      "target": "A027",
+      "amount": 924.51,
+      "count": 1
+    },
+    {
+      "source": "A040",
+      "target": "A054",
+      "amount": 811.29,
+      "count": 1
+    },
+    {
+      "source": "A041",
+      "target": "A040",
+      "amount": 228.32,
+      "count": 1
+    },
+    {
+      "source": "A041",
+      "target": "A010",
+      "amount": 1239.01,
+      "count": 1
+    },
+    {
+      "source": "A041",
+      "target": "A059",
+      "amount": 629.66,
+      "count": 1
+    },
+    {
+      "source": "A041",
+      "target": "A032",
+      "amount": 55.69,
+      "count": 1
+    },
+    {
+      "source": "A041",
+      "target": "A013",
+      "amount": 1203.67,
+      "count": 1
+    },
+    {
+      "source": "A041",
+      "target": "A023",
+      "amount": 692.82,
+      "count": 1
+    },
+    {
+      "source": "A041",
+      "target": "A062",
+      "amount": 46.88,
+      "count": 1
+    },
+    {
+      "source": "A041",
+      "target": "A028",
+      "amount": 913.76,
+      "count": 1
+    },
+    {
+      "source": "A041",
+      "target": "A037",
+      "amount": 442.96,
+      "count": 1
+    },
+    {
+      "source": "A042",
+      "target": "A069",
+      "amount": 662.98,
+      "count": 1
+    },
+    {
+      "source": "A042",
+      "target": "A003",
+      "amount": 179.17,
+      "count": 1
+    },
+    {
+      "source": "A042",
+      "target": "A009",
+      "amount": 729.54,
+      "count": 1
+    },
+    {
+      "source": "A042",
+      "target": "A035",
+      "amount": 1212.81,
+      "count": 1
+    },
+    {
+      "source": "A042",
+      "target": "A034",
+      "amount": 191.78,
+      "count": 1
+    },
+    {
+      "source": "A042",
+      "target": "A016",
+      "amount": 944.76,
+      "count": 1
+    },
+    {
+      "source": "A042",
+      "target": "A018",
+      "amount": 1108.33,
+      "count": 1
+    },
+    {
+      "source": "A043",
+      "target": "A062",
+      "amount": 284.97,
+      "count": 1
+    },
+    {
+      "source": "A043",
+      "target": "A044",
+      "amount": 28.43,
+      "count": 1
+    },
+    {
+      "source": "A043",
+      "target": "A050",
+      "amount": 916.77,
+      "count": 1
+    },
+    {
+      "source": "A043",
+      "target": "A023",
+      "amount": 704.76,
+      "count": 1
+    },
+    {
+      "source": "A044",
+      "target": "A028",
+      "amount": 917.2,
+      "count": 1
+    },
+    {
+      "source": "A044",
+      "target": "A018",
+      "amount": 346.05,
+      "count": 1
+    },
+    {
+      "source": "A044",
+      "target": "A039",
+      "amount": 1355.42,
+      "count": 1
+    },
+    {
+      "source": "A044",
+      "target": "A038",
+      "amount": 901.74,
+      "count": 1
+    },
+    {
+      "source": "A044",
+      "target": "A033",
+      "amount": 1133.84,
+      "count": 1
+    },
+    {
+      "source": "A044",
+      "target": "A065",
+      "amount": 571.56,
+      "count": 1
+    },
+    {
+      "source": "A044",
+      "target": "A042",
+      "amount": 781.65,
+      "count": 1
+    },
+    {
+      "source": "A045",
+      "target": "A054",
+      "amount": 1805.29,
+      "count": 2
+    },
+    {
+      "source": "A045",
+      "target": "A026",
+      "amount": 961.25,
+      "count": 1
+    },
+    {
+      "source": "A045",
+      "target": "A030",
+      "amount": 807.52,
+      "count": 1
+    },
+    {
+      "source": "A045",
+      "target": "A037",
+      "amount": 1389.92,
+      "count": 1
+    },
+    {
+      "source": "A045",
+      "target": "A071",
+      "amount": 1240.11,
+      "count": 1
+    },
+    {
+      "source": "A046",
+      "target": "A049",
+      "amount": 1330.26,
+      "count": 1
+    },
+    {
+      "source": "A046",
+      "target": "A063",
+      "amount": 883.06,
+      "count": 1
+    },
+    {
+      "source": "A046",
+      "target": "A039",
+      "amount": 268.76,
+      "count": 1
+    },
+    {
+      "source": "A046",
+      "target": "A067",
+      "amount": 712.48,
+      "count": 1
+    },
+    {
+      "source": "A046",
+      "target": "A050",
+      "amount": 453.85,
+      "count": 1
+    },
+    {
+      "source": "A047",
+      "target": "A066",
+      "amount": 388.07,
+      "count": 1
+    },
+    {
+      "source": "A047",
+      "target": "A008",
+      "amount": 718.23,
+      "count": 1
+    },
+    {
+      "source": "A047",
+      "target": "A060",
+      "amount": 783.79,
+      "count": 1
+    },
+    {
+      "source": "A047",
+      "target": "A033",
+      "amount": 826.69,
+      "count": 1
+    },
+    {
+      "source": "A047",
+      "target": "A014",
+      "amount": 1072.4,
+      "count": 1
+    },
+    {
+      "source": "A048",
+      "target": "A019",
+      "amount": 243.9,
+      "count": 1
+    },
+    {
+      "source": "A048",
+      "target": "A058",
+      "amount": 1307.34,
+      "count": 1
+    },
+    {
+      "source": "A048",
+      "target": "A050",
+      "amount": 1319.23,
+      "count": 1
+    },
+    {
+      "source": "A048",
+      "target": "A004",
+      "amount": 1204.86,
+      "count": 1
+    },
+    {
+      "source": "A048",
+      "target": "A035",
+      "amount": 645.71,
+      "count": 1
+    },
+    {
+      "source": "A049",
+      "target": "A010",
+      "amount": 537.38,
+      "count": 1
+    },
+    {
+      "source": "A049",
+      "target": "A019",
+      "amount": 703.55,
+      "count": 1
+    },
+    {
+      "source": "A049",
+      "target": "A061",
+      "amount": 167.18,
+      "count": 1
+    },
+    {
+      "source": "A049",
+      "target": "A033",
+      "amount": 1298.59,
+      "count": 1
+    },
+    {
+      "source": "A049",
+      "target": "A058",
+      "amount": 532.0,
+      "count": 1
+    },
+    {
+      "source": "A049",
+      "target": "A052",
+      "amount": 1088.76,
+      "count": 1
+    },
+    {
+      "source": "A050",
+      "target": "A069",
+      "amount": 673.29,
+      "count": 1
+    },
+    {
+      "source": "A050",
+      "target": "A071",
+      "amount": 524.77,
+      "count": 1
+    },
+    {
+      "source": "A051",
+      "target": "A007",
+      "amount": 247.2,
+      "count": 1
+    },
+    {
+      "source": "A051",
+      "target": "A008",
+      "amount": 215.79,
+      "count": 1
+    },
+    {
+      "source": "A051",
+      "target": "A062",
+      "amount": 122.23,
+      "count": 1
+    },
+    {
+      "source": "A051",
+      "target": "A037",
+      "amount": 785.09,
+      "count": 1
+    },
+    {
+      "source": "A051",
+      "target": "A034",
+      "amount": 710.65,
+      "count": 1
+    },
+    {
+      "source": "A051",
+      "target": "A031",
+      "amount": 442.56,
+      "count": 1
+    },
+    {
+      "source": "A052",
+      "target": "A031",
+      "amount": 388.19,
+      "count": 1
+    },
+    {
+      "source": "A052",
+      "target": "A003",
+      "amount": 267.52,
+      "count": 1
+    },
+    {
+      "source": "A052",
+      "target": "A043",
+      "amount": 1161.84,
+      "count": 1
+    },
+    {
+      "source": "A052",
+      "target": "A063",
+      "amount": 417.74,
+      "count": 1
+    },
+    {
+      "source": "A053",
+      "target": "A019",
+      "amount": 1241.87,
+      "count": 1
+    },
+    {
+      "source": "A053",
+      "target": "A048",
+      "amount": 954.7,
+      "count": 1
+    },
+    {
+      "source": "A053",
+      "target": "A061",
+      "amount": 1372.74,
+      "count": 1
+    },
+    {
+      "source": "A053",
+      "target": "A028",
+      "amount": 639.91,
+      "count": 1
+    },
+    {
+      "source": "A053",
+      "target": "A012",
+      "amount": 451.32,
+      "count": 1
+    },
+    {
+      "source": "A053",
+      "target": "A058",
+      "amount": 106.67,
+      "count": 1
+    },
+    {
+      "source": "A053",
+      "target": "A043",
+      "amount": 1309.26,
+      "count": 1
+    },
+    {
+      "source": "A053",
+      "target": "A034",
+      "amount": 317.49,
+      "count": 1
+    },
+    {
+      "source": "A053",
+      "target": "A022",
+      "amount": 297.1,
+      "count": 1
+    },
+    {
+      "source": "A054",
+      "target": "A051",
+      "amount": 519.56,
+      "count": 1
+    },
+    {
+      "source": "A054",
+      "target": "A010",
+      "amount": 614.24,
+      "count": 1
+    },
+    {
+      "source": "A054",
+      "target": "A021",
+      "amount": 971.88,
+      "count": 1
+    },
+    {
+      "source": "A054",
+      "target": "A070",
+      "amount": 476.49,
+      "count": 1
+    },
+    {
+      "source": "A054",
+      "target": "A028",
+      "amount": 262.72,
+      "count": 1
+    },
+    {
+      "source": "A055",
+      "target": "A035",
+      "amount": 902.47,
+      "count": 1
+    },
+    {
+      "source": "A055",
+      "target": "A002",
+      "amount": 654.46,
+      "count": 1
+    },
+    {
+      "source": "A055",
+      "target": "A012",
+      "amount": 2162.0,
+      "count": 2
+    },
+    {
+      "source": "A055",
+      "target": "A011",
+      "amount": 1326.05,
+      "count": 1
+    },
+    {
+      "source": "A055",
+      "target": "A034",
+      "amount": 464.78,
+      "count": 1
+    },
+    {
+      "source": "A055",
+      "target": "A044",
+      "amount": 1025.39,
+      "count": 1
+    },
+    {
+      "source": "A055",
+      "target": "A051",
+      "amount": 1788.83,
+      "count": 2
+    },
+    {
+      "source": "A055",
+      "target": "A046",
+      "amount": 897.11,
+      "count": 1
+    },
+    {
+      "source": "A055",
+      "target": "A065",
+      "amount": 179.59,
+      "count": 1
+    },
+    {
+      "source": "A056",
+      "target": "A009",
+      "amount": 1816.7,
+      "count": 2
+    },
+    {
+      "source": "A056",
+      "target": "A005",
+      "amount": 586.98,
+      "count": 1
+    },
+    {
+      "source": "A056",
+      "target": "A066",
+      "amount": 643.05,
+      "count": 1
+    },
+    {
+      "source": "A056",
+      "target": "A059",
+      "amount": 1081.83,
+      "count": 1
+    },
+    {
+      "source": "A056",
+      "target": "A010",
+      "amount": 845.29,
+      "count": 1
+    },
+    {
+      "source": "A056",
+      "target": "A054",
+      "amount": 690.21,
+      "count": 1
+    },
+    {
+      "source": "A056",
+      "target": "A036",
+      "amount": 1058.3,
+      "count": 1
+    },
+    {
+      "source": "A056",
+      "target": "A070",
+      "amount": 155.11,
+      "count": 1
+    },
+    {
+      "source": "A056",
+      "target": "A062",
+      "amount": 187.57,
+      "count": 1
+    },
+    {
+      "source": "A057",
+      "target": "A002",
+      "amount": 148.41,
+      "count": 1
+    },
+    {
+      "source": "A057",
+      "target": "A033",
+      "amount": 1057.45,
+      "count": 1
+    },
+    {
+      "source": "A057",
+      "target": "A017",
+      "amount": 602.2,
+      "count": 1
+    },
+    {
+      "source": "A057",
+      "target": "A005",
+      "amount": 1023.0,
+      "count": 1
+    },
+    {
+      "source": "A057",
+      "target": "A044",
+      "amount": 1304.05,
+      "count": 1
+    },
+    {
+      "source": "A057",
+      "target": "A020",
+      "amount": 1046.24,
+      "count": 1
+    },
+    {
+      "source": "A058",
+      "target": "A070",
+      "amount": 219.61,
+      "count": 1
+    },
+    {
+      "source": "A058",
+      "target": "A018",
+      "amount": 385.53,
+      "count": 1
+    },
+    {
+      "source": "A058",
+      "target": "A043",
+      "amount": 237.22,
+      "count": 1
+    },
+    {
+      "source": "A058",
+      "target": "A017",
+      "amount": 1125.95,
+      "count": 1
+    },
+    {
+      "source": "A059",
+      "target": "A031",
+      "amount": 1226.79,
+      "count": 1
+    },
+    {
+      "source": "A059",
+      "target": "A006",
+      "amount": 789.22,
+      "count": 1
+    },
+    {
+      "source": "A059",
+      "target": "A015",
+      "amount": 913.84,
+      "count": 1
+    },
+    {
+      "source": "A059",
+      "target": "A057",
+      "amount": 1031.8600000000001,
+      "count": 2
+    },
+    {
+      "source": "A059",
+      "target": "A048",
+      "amount": 484.23,
+      "count": 1
+    },
+    {
+      "source": "A059",
+      "target": "A052",
+      "amount": 94.8,
+      "count": 1
+    },
+    {
+      "source": "A060",
+      "target": "A002",
+      "amount": 1053.65,
+      "count": 1
+    },
+    {
+      "source": "A060",
+      "target": "A056",
+      "amount": 891.31,
+      "count": 1
+    },
+    {
+      "source": "A060",
+      "target": "A066",
+      "amount": 919.08,
+      "count": 1
+    },
+    {
+      "source": "A060",
+      "target": "A037",
+      "amount": 65.04,
+      "count": 1
+    },
+    {
+      "source": "A060",
+      "target": "A031",
+      "amount": 1102.77,
+      "count": 1
+    },
+    {
+      "source": "A060",
+      "target": "A009",
+      "amount": 648.47,
+      "count": 1
+    },
+    {
+      "source": "A061",
+      "target": "A056",
+      "amount": 490.17,
+      "count": 1
+    },
+    {
+      "source": "A061",
+      "target": "A047",
+      "amount": 785.27,
+      "count": 1
+    },
+    {
+      "source": "A062",
+      "target": "A067",
+      "amount": 940.64,
+      "count": 1
+    },
+    {
+      "source": "A062",
+      "target": "A019",
+      "amount": 918.3,
+      "count": 2
+    },
+    {
+      "source": "A062",
+      "target": "A052",
+      "amount": 1315.89,
+      "count": 1
+    },
+    {
+      "source": "A062",
+      "target": "A028",
+      "amount": 396.65,
+      "count": 1
+    },
+    {
+      "source": "A062",
+      "target": "A027",
+      "amount": 764.14,
+      "count": 1
+    },
+    {
+      "source": "A063",
+      "target": "A037",
+      "amount": 722.24,
+      "count": 1
+    },
+    {
+      "source": "A064",
+      "target": "A062",
+      "amount": 366.55,
+      "count": 1
+    },
+    {
+      "source": "A064",
+      "target": "A025",
+      "amount": 230.92,
+      "count": 1
+    },
+    {
+      "source": "A064",
+      "target": "A067",
+      "amount": 597.75,
+      "count": 1
+    },
+    {
+      "source": "A064",
+      "target": "A013",
+      "amount": 1221.32,
+      "count": 1
+    },
+    {
+      "source": "A064",
+      "target": "A039",
+      "amount": 940.31,
+      "count": 1
+    },
+    {
+      "source": "A064",
+      "target": "A071",
+      "amount": 1170.03,
+      "count": 1
+    },
+    {
+      "source": "A064",
+      "target": "A027",
+      "amount": 233.53,
+      "count": 1
+    },
+    {
+      "source": "A064",
+      "target": "A069",
+      "amount": 1172.47,
+      "count": 1
+    },
+    {
+      "source": "A064",
+      "target": "A054",
+      "amount": 1166.19,
+      "count": 1
+    },
+    {
+      "source": "A064",
+      "target": "A049",
+      "amount": 658.54,
+      "count": 1
+    },
+    {
+      "source": "A065",
+      "target": "A063",
+      "amount": 145.45,
+      "count": 1
+    },
+    {
+      "source": "A065",
+      "target": "A060",
+      "amount": 1115.35,
+      "count": 1
+    },
+    {
+      "source": "A065",
+      "target": "A013",
+      "amount": 643.77,
+      "count": 1
+    },
+    {
+      "source": "A065",
+      "target": "A017",
+      "amount": 1212.36,
+      "count": 1
+    },
+    {
+      "source": "A065",
+      "target": "A024",
+      "amount": 1270.17,
+      "count": 1
+    },
+    {
+      "source": "A065",
+      "target": "A000",
+      "amount": 927.57,
+      "count": 1
+    },
+    {
+      "source": "A066",
+      "target": "A015",
+      "amount": 413.39,
+      "count": 1
+    },
+    {
+      "source": "A066",
+      "target": "A040",
+      "amount": 1309.89,
+      "count": 1
+    },
+    {
+      "source": "A066",
+      "target": "A062",
+      "amount": 884.91,
+      "count": 1
+    },
+    {
+      "source": "A066",
+      "target": "A020",
+      "amount": 522.18,
+      "count": 1
+    },
+    {
+      "source": "A067",
+      "target": "A032",
+      "amount": 1360.09,
+      "count": 1
+    },
+    {
+      "source": "A067",
+      "target": "A069",
+      "amount": 720.11,
+      "count": 1
+    },
+    {
+      "source": "A067",
+      "target": "A020",
+      "amount": 98.49,
+      "count": 1
+    },
+    {
+      "source": "A067",
+      "target": "A037",
+      "amount": 646.13,
+      "count": 1
+    },
+    {
+      "source": "A068",
+      "target": "A069",
+      "amount": 1123.82,
+      "count": 1
+    },
+    {
+      "source": "A068",
+      "target": "A015",
+      "amount": 1362.9,
+      "count": 1
+    },
+    {
+      "source": "A068",
+      "target": "A048",
+      "amount": 1336.71,
+      "count": 1
+    },
+    {
+      "source": "A068",
+      "target": "A002",
+      "amount": 892.1,
+      "count": 1
+    },
+    {
+      "source": "A069",
+      "target": "A037",
+      "amount": 463.27,
+      "count": 1
+    },
+    {
+      "source": "A069",
+      "target": "A004",
+      "amount": 2043.83,
+      "count": 2
+    },
+    {
+      "source": "A069",
+      "target": "A045",
+      "amount": 103.56,
+      "count": 1
+    },
+    {
+      "source": "A069",
+      "target": "A038",
+      "amount": 864.12,
+      "count": 1
+    },
+    {
+      "source": "A069",
+      "target": "A067",
+      "amount": 1287.52,
+      "count": 1
+    },
+    {
+      "source": "A070",
+      "target": "A029",
+      "amount": 832.05,
+      "count": 1
+    },
+    {
+      "source": "A070",
+      "target": "A018",
+      "amount": 613.11,
+      "count": 1
+    },
+    {
+      "source": "A070",
+      "target": "A052",
+      "amount": 148.63,
+      "count": 1
+    },
+    {
+      "source": "A070",
+      "target": "A027",
+      "amount": 613.5,
+      "count": 1
+    },
+    {
+      "source": "A070",
+      "target": "A067",
+      "amount": 604.09,
+      "count": 1
+    },
+    {
+      "source": "A070",
+      "target": "A004",
+      "amount": 647.66,
+      "count": 1
+    },
+    {
+      "source": "A070",
+      "target": "A002",
+      "amount": 558.83,
+      "count": 1
+    },
+    {
+      "source": "A070",
+      "target": "A041",
+      "amount": 545.65,
+      "count": 1
+    },
+    {
+      "source": "A070",
+      "target": "A019",
+      "amount": 395.84,
+      "count": 1
+    },
+    {
+      "source": "A071",
+      "target": "A001",
+      "amount": 174.39,
+      "count": 1
+    },
+    {
+      "source": "A071",
+      "target": "A003",
+      "amount": 860.41,
+      "count": 1
+    },
+    {
+      "source": "A071",
+      "target": "A042",
+      "amount": 944.62,
+      "count": 1
+    },
+    {
+      "source": "A071",
+      "target": "A040",
+      "amount": 1331.05,
+      "count": 1
+    },
+    {
+      "source": "A071",
+      "target": "A030",
+      "amount": 973.04,
+      "count": 1
+    },
+    {
+      "source": "A071",
+      "target": "A025",
+      "amount": 1008.11,
+      "count": 1
+    },
+    {
+      "source": "A071",
+      "target": "A068",
+      "amount": 382.58,
+      "count": 1
+    },
+    {
+      "source": "A071",
+      "target": "A049",
+      "amount": 412.12,
+      "count": 1
+    },
+    {
+      "source": "R0",
+      "target": "R1",
+      "amount": 4800,
+      "count": 1
+    },
+    {
+      "source": "R1",
+      "target": "R2",
+      "amount": 4775,
+      "count": 1
+    },
+    {
+      "source": "R2",
+      "target": "R3",
+      "amount": 4750,
+      "count": 1
+    },
+    {
+      "source": "R3",
+      "target": "R4",
+      "amount": 4725,
+      "count": 1
+    },
+    {
+      "source": "R4",
+      "target": "R0",
+      "amount": 4700,
+      "count": 1
+    },
+    {
+      "source": "MULE",
+      "target": "A021",
+      "amount": 6400,
+      "count": 1
+    }
+  ],
+  "transactions": [
+    {
+      "id": "T0109",
+      "source": "A038",
+      "target": "A051",
+      "amount": 776.15,
+      "timestamp": "2026-01-01T00:06:00+00:00"
+    },
+    {
+      "id": "T0388",
+      "source": "A030",
+      "target": "A018",
+      "amount": 421.96,
+      "timestamp": "2026-01-01T00:25:00+00:00"
+    },
+    {
+      "id": "T0058",
+      "source": "A051",
+      "target": "A007",
+      "amount": 247.2,
+      "timestamp": "2026-01-01T00:35:00+00:00"
+    },
+    {
+      "id": "T0382",
+      "source": "A017",
+      "target": "A060",
+      "amount": 639.07,
+      "timestamp": "2026-01-01T01:26:00+00:00"
+    },
+    {
+      "id": "T0044",
+      "source": "A070",
+      "target": "A029",
+      "amount": 832.05,
+      "timestamp": "2026-01-01T01:57:00+00:00"
+    },
+    {
+      "id": "T0028",
+      "source": "A067",
+      "target": "A032",
+      "amount": 1360.09,
+      "timestamp": "2026-01-01T03:08:00+00:00"
+    },
+    {
+      "id": "T0212",
+      "source": "A030",
+      "target": "A020",
+      "amount": 448.84,
+      "timestamp": "2026-01-01T03:44:00+00:00"
+    },
+    {
+      "id": "T0359",
+      "source": "A011",
+      "target": "A054",
+      "amount": 721.71,
+      "timestamp": "2026-01-01T04:58:00+00:00"
+    },
+    {
+      "id": "T0146",
+      "source": "A003",
+      "target": "A031",
+      "amount": 295.12,
+      "timestamp": "2026-01-01T05:33:00+00:00"
+    },
+    {
+      "id": "T0420",
+      "source": "R0",
+      "target": "R1",
+      "amount": 4800,
+      "timestamp": "2026-01-01T06:40:00+00:00"
+    },
+    {
+      "id": "T0421",
+      "source": "R1",
+      "target": "R2",
+      "amount": 4775,
+      "timestamp": "2026-01-01T06:42:00+00:00"
+    },
+    {
+      "id": "T0422",
+      "source": "R2",
+      "target": "R3",
+      "amount": 4750,
+      "timestamp": "2026-01-01T06:44:00+00:00"
+    },
+    {
+      "id": "T0423",
+      "source": "R3",
+      "target": "R4",
+      "amount": 4725,
+      "timestamp": "2026-01-01T06:46:00+00:00"
+    },
+    {
+      "id": "T0424",
+      "source": "R4",
+      "target": "R0",
+      "amount": 4700,
+      "timestamp": "2026-01-01T06:48:00+00:00"
+    },
+    {
+      "id": "T0003",
+      "source": "A027",
+      "target": "A029",
+      "amount": 717.39,
+      "timestamp": "2026-01-01T07:14:00+00:00"
+    },
+    {
+      "id": "T0139",
+      "source": "A003",
+      "target": "A050",
+      "amount": 836.81,
+      "timestamp": "2026-01-01T07:24:00+00:00"
+    },
+    {
+      "id": "T0379",
+      "source": "A049",
+      "target": "A010",
+      "amount": 537.38,
+      "timestamp": "2026-01-01T07:41:00+00:00"
+    },
+    {
+      "id": "T0311",
+      "source": "A051",
+      "target": "A008",
+      "amount": 215.79,
+      "timestamp": "2026-01-01T08:22:00+00:00"
+    },
+    {
+      "id": "T0286",
+      "source": "A005",
+      "target": "A066",
+      "amount": 436.25,
+      "timestamp": "2026-01-01T08:30:00+00:00"
+    },
+    {
+      "id": "T0045",
+      "source": "A009",
+      "target": "A007",
+      "amount": 335.94,
+      "timestamp": "2026-01-01T08:34:00+00:00"
+    },
+    {
+      "id": "T0416",
+      "source": "A046",
+      "target": "A049",
+      "amount": 1330.26,
+      "timestamp": "2026-01-01T08:50:00+00:00"
+    },
+    {
+      "id": "T0401",
+      "source": "A050",
+      "target": "A069",
+      "amount": 673.29,
+      "timestamp": "2026-01-01T09:59:00+00:00"
+    },
+    {
+      "id": "T0226",
+      "source": "A049",
+      "target": "A019",
+      "amount": 703.55,
+      "timestamp": "2026-01-01T10:06:00+00:00"
+    },
+    {
+      "id": "T0349",
+      "source": "A010",
+      "target": "A064",
+      "amount": 911.66,
+      "timestamp": "2026-01-01T10:41:00+00:00"
+    },
+    {
+      "id": "T0251",
+      "source": "A032",
+      "target": "A017",
+      "amount": 886.98,
+      "timestamp": "2026-01-01T10:45:00+00:00"
+    },
+    {
+      "id": "T0087",
+      "source": "A039",
+      "target": "A046",
+      "amount": 1260.59,
+      "timestamp": "2026-01-01T10:53:00+00:00"
+    },
+    {
+      "id": "T0145",
+      "source": "A044",
+      "target": "A028",
+      "amount": 917.2,
+      "timestamp": "2026-01-01T10:59:00+00:00"
+    },
+    {
+      "id": "T0086",
+      "source": "A070",
+      "target": "A018",
+      "amount": 613.11,
+      "timestamp": "2026-01-01T11:25:00+00:00"
+    },
+    {
+      "id": "T0326",
+      "source": "A009",
+      "target": "A050",
+      "amount": 1209.23,
+      "timestamp": "2026-01-01T11:33:00+00:00"
+    },
+    {
+      "id": "T0081",
+      "source": "A011",
+      "target": "A054",
+      "amount": 1164.5,
+      "timestamp": "2026-01-01T12:02:00+00:00"
+    },
+    {
+      "id": "T0264",
+      "source": "A038",
+      "target": "A052",
+      "amount": 181.01,
+      "timestamp": "2026-01-01T12:22:00+00:00"
+    },
+    {
+      "id": "T0319",
+      "source": "A062",
+      "target": "A067",
+      "amount": 940.64,
+      "timestamp": "2026-01-01T12:24:00+00:00"
+    },
+    {
+      "id": "T0025",
+      "source": "A065",
+      "target": "A063",
+      "amount": 145.45,
+      "timestamp": "2026-01-01T12:51:00+00:00"
+    },
+    {
+      "id": "T0402",
+      "source": "A024",
+      "target": "A036",
+      "amount": 512.62,
+      "timestamp": "2026-01-01T13:03:00+00:00"
+    },
+    {
+      "id": "T0080",
+      "source": "A064",
+      "target": "A062",
+      "amount": 366.55,
+      "timestamp": "2026-01-01T13:52:00+00:00"
+    },
+    {
+      "id": "T0180",
+      "source": "A061",
+      "target": "A056",
+      "amount": 490.17,
+      "timestamp": "2026-01-01T14:01:00+00:00"
+    },
+    {
+      "id": "T0302",
+      "source": "A045",
+      "target": "A054",
+      "amount": 1217.97,
+      "timestamp": "2026-01-01T14:02:00+00:00"
+    },
+    {
+      "id": "T0209",
+      "source": "A046",
+      "target": "A063",
+      "amount": 883.06,
+      "timestamp": "2026-01-01T14:05:00+00:00"
+    },
+    {
+      "id": "T0144",
+      "source": "A060",
+      "target": "A002",
+      "amount": 1053.65,
+      "timestamp": "2026-01-01T14:13:00+00:00"
+    },
+    {
+      "id": "T0372",
+      "source": "A025",
+      "target": "A017",
+      "amount": 1224.74,
+      "timestamp": "2026-01-01T14:14:00+00:00"
+    },
+    {
+      "id": "T0182",
+      "source": "A051",
+      "target": "A062",
+      "amount": 122.23,
+      "timestamp": "2026-01-01T14:38:00+00:00"
+    },
+    {
+      "id": "T0050",
+      "source": "A045",
+      "target": "A054",
+      "amount": 587.32,
+      "timestamp": "2026-01-01T14:47:00+00:00"
+    },
+    {
+      "id": "T0320",
+      "source": "A028",
+      "target": "A050",
+      "amount": 1378.54,
+      "timestamp": "2026-01-01T14:57:00+00:00"
+    },
+    {
+      "id": "T0425",
+      "source": "A000",
+      "target": "COLLECTOR",
+      "amount": 800,
+      "timestamp": "2026-01-01T15:00:00+00:00"
+    },
+    {
+      "id": "T0426",
+      "source": "A001",
+      "target": "COLLECTOR",
+      "amount": 845,
+      "timestamp": "2026-01-01T15:01:00+00:00"
+    },
+    {
+      "id": "T0427",
+      "source": "A002",
+      "target": "COLLECTOR",
+      "amount": 890,
+      "timestamp": "2026-01-01T15:02:00+00:00"
+    },
+    {
+      "id": "T0428",
+      "source": "A003",
+      "target": "COLLECTOR",
+      "amount": 935,
+      "timestamp": "2026-01-01T15:03:00+00:00"
+    },
+    {
+      "id": "T0429",
+      "source": "A004",
+      "target": "COLLECTOR",
+      "amount": 980,
+      "timestamp": "2026-01-01T15:04:00+00:00"
+    },
+    {
+      "id": "T0430",
+      "source": "A005",
+      "target": "COLLECTOR",
+      "amount": 1025,
+      "timestamp": "2026-01-01T15:05:00+00:00"
+    },
+    {
+      "id": "T0431",
+      "source": "A006",
+      "target": "COLLECTOR",
+      "amount": 1070,
+      "timestamp": "2026-01-01T15:06:00+00:00"
+    },
+    {
+      "id": "T0432",
+      "source": "A007",
+      "target": "COLLECTOR",
+      "amount": 1115,
+      "timestamp": "2026-01-01T15:07:00+00:00"
+    },
+    {
+      "id": "T0433",
+      "source": "A008",
+      "target": "COLLECTOR",
+      "amount": 1160,
+      "timestamp": "2026-01-01T15:08:00+00:00"
+    },
+    {
+      "id": "T0018",
+      "source": "A028",
+      "target": "A041",
+      "amount": 1183.14,
+      "timestamp": "2026-01-01T15:16:00+00:00"
+    },
+    {
+      "id": "T0236",
+      "source": "A003",
+      "target": "A005",
+      "amount": 467.64,
+      "timestamp": "2026-01-01T15:19:00+00:00"
+    },
+    {
+      "id": "T0412",
+      "source": "A055",
+      "target": "A035",
+      "amount": 902.47,
+      "timestamp": "2026-01-01T15:39:00+00:00"
+    },
+    {
+      "id": "T0186",
+      "source": "A038",
+      "target": "A054",
+      "amount": 441.42,
+      "timestamp": "2026-01-01T16:26:00+00:00"
+    },
+    {
+      "id": "T0131",
+      "source": "A042",
+      "target": "A069",
+      "amount": 662.98,
+      "timestamp": "2026-01-01T17:00:00+00:00"
+    },
+    {
+      "id": "T0181",
+      "source": "A032",
+      "target": "A061",
+      "amount": 177.44,
+      "timestamp": "2026-01-01T17:50:00+00:00"
+    },
+    {
+      "id": "T0390",
+      "source": "A010",
+      "target": "A067",
+      "amount": 1365.02,
+      "timestamp": "2026-01-01T18:28:00+00:00"
+    },
+    {
+      "id": "T0065",
+      "source": "A010",
+      "target": "A023",
+      "amount": 114.56,
+      "timestamp": "2026-01-01T18:33:00+00:00"
+    },
+    {
+      "id": "T0340",
+      "source": "A041",
+      "target": "A040",
+      "amount": 228.32,
+      "timestamp": "2026-01-01T18:38:00+00:00"
+    },
+    {
+      "id": "T0073",
+      "source": "A033",
+      "target": "A016",
+      "amount": 1307.9,
+      "timestamp": "2026-01-01T18:47:00+00:00"
+    },
+    {
+      "id": "T0070",
+      "source": "A038",
+      "target": "A058",
+      "amount": 456.32,
+      "timestamp": "2026-01-01T19:48:00+00:00"
+    },
+    {
+      "id": "T0054",
+      "source": "A059",
+      "target": "A031",
+      "amount": 1226.79,
+      "timestamp": "2026-01-01T20:35:00+00:00"
+    },
+    {
+      "id": "T0327",
+      "source": "A055",
+      "target": "A002",
+      "amount": 654.46,
+      "timestamp": "2026-01-01T21:15:00+00:00"
+    },
+    {
+      "id": "T0408",
+      "source": "A069",
+      "target": "A037",
+      "amount": 463.27,
+      "timestamp": "2026-01-01T21:51:00+00:00"
+    },
+    {
+      "id": "T0143",
+      "source": "A035",
+      "target": "A053",
+      "amount": 368.13,
+      "timestamp": "2026-01-01T22:21:00+00:00"
+    },
+    {
+      "id": "T0406",
+      "source": "A047",
+      "target": "A066",
+      "amount": 388.07,
+      "timestamp": "2026-01-01T22:33:00+00:00"
+    },
+    {
+      "id": "T0434",
+      "source": "A020",
+      "target": "MULE",
+      "amount": 6500,
+      "timestamp": "2026-01-01T23:20:00+00:00"
+    },
+    {
+      "id": "T0435",
+      "source": "MULE",
+      "target": "A021",
+      "amount": 6400,
+      "timestamp": "2026-01-01T23:27:00+00:00"
+    },
+    {
+      "id": "T0344",
+      "source": "A036",
+      "target": "A009",
+      "amount": 909.64,
+      "timestamp": "2026-01-02T00:39:00+00:00"
+    },
+    {
+      "id": "T0298",
+      "source": "A008",
+      "target": "A011",
+      "amount": 1167.85,
+      "timestamp": "2026-01-02T01:27:00+00:00"
+    },
+    {
+      "id": "T0002",
+      "source": "A011",
+      "target": "A054",
+      "amount": 63.86,
+      "timestamp": "2026-01-02T01:35:00+00:00"
+    },
+    {
+      "id": "T0353",
+      "source": "A006",
+      "target": "A042",
+      "amount": 110.96,
+      "timestamp": "2026-01-02T01:48:00+00:00"
+    },
+    {
+      "id": "T0268",
+      "source": "A053",
+      "target": "A019",
+      "amount": 1241.87,
+      "timestamp": "2026-01-02T03:02:00+00:00"
+    },
+    {
+      "id": "T0174",
+      "source": "A035",
+      "target": "A067",
+      "amount": 843.57,
+      "timestamp": "2026-01-02T03:27:00+00:00"
+    },
+    {
+      "id": "T0013",
+      "source": "A037",
+      "target": "A010",
+      "amount": 1200.34,
+      "timestamp": "2026-01-02T03:34:00+00:00"
+    },
+    {
+      "id": "T0362",
+      "source": "A019",
+      "target": "A009",
+      "amount": 428.19,
+      "timestamp": "2026-01-02T03:37:00+00:00"
+    },
+    {
+      "id": "T0373",
+      "source": "A061",
+      "target": "A047",
+      "amount": 785.27,
+      "timestamp": "2026-01-02T04:00:00+00:00"
+    },
+    {
+      "id": "T0088",
+      "source": "A045",
+      "target": "A026",
+      "amount": 961.25,
+      "timestamp": "2026-01-02T04:04:00+00:00"
+    },
+    {
+      "id": "T0076",
+      "source": "A001",
+      "target": "A070",
+      "amount": 433.14,
+      "timestamp": "2026-01-02T04:17:00+00:00"
+    },
+    {
+      "id": "T0155",
+      "source": "A001",
+      "target": "A053",
+      "amount": 1154.82,
+      "timestamp": "2026-01-02T04:49:00+00:00"
+    },
+    {
+      "id": "T0118",
+      "source": "A018",
+      "target": "A000",
+      "amount": 1251.87,
+      "timestamp": "2026-01-02T05:06:00+00:00"
+    },
+    {
+      "id": "T0077",
+      "source": "A017",
+      "target": "A033",
+      "amount": 179.29,
+      "timestamp": "2026-01-02T05:13:00+00:00"
+    },
+    {
+      "id": "T0092",
+      "source": "A052",
+      "target": "A031",
+      "amount": 388.19,
+      "timestamp": "2026-01-02T05:31:00+00:00"
+    },
+    {
+      "id": "T0213",
+      "source": "A070",
+      "target": "A052",
+      "amount": 148.63,
+      "timestamp": "2026-01-02T06:58:00+00:00"
+    },
+    {
+      "id": "T0147",
+      "source": "A019",
+      "target": "A030",
+      "amount": 194.18,
+      "timestamp": "2026-01-02T07:14:00+00:00"
+    },
+    {
+      "id": "T0293",
+      "source": "A055",
+      "target": "A012",
+      "amount": 1114.47,
+      "timestamp": "2026-01-02T07:14:00+00:00"
+    },
+    {
+      "id": "T0436",
+      "source": "A030",
+      "target": "SHOP",
+      "amount": 650,
+      "timestamp": "2026-01-02T07:40:00+00:00"
+    },
+    {
+      "id": "T0437",
+      "source": "A031",
+      "target": "SHOP",
+      "amount": 670,
+      "timestamp": "2026-01-02T07:41:00+00:00"
+    },
+    {
+      "id": "T0265",
+      "source": "A004",
+      "target": "A038",
+      "amount": 1394.38,
+      "timestamp": "2026-01-02T07:42:00+00:00"
+    },
+    {
+      "id": "T0438",
+      "source": "A032",
+      "target": "SHOP",
+      "amount": 690,
+      "timestamp": "2026-01-02T07:42:00+00:00"
+    },
+    {
+      "id": "T0439",
+      "source": "A033",
+      "target": "SHOP",
+      "amount": 710,
+      "timestamp": "2026-01-02T07:43:00+00:00"
+    },
+    {
+      "id": "T0440",
+      "source": "A034",
+      "target": "SHOP",
+      "amount": 730,
+      "timestamp": "2026-01-02T07:44:00+00:00"
+    },
+    {
+      "id": "T0441",
+      "source": "A035",
+      "target": "SHOP",
+      "amount": 750,
+      "timestamp": "2026-01-02T07:45:00+00:00"
+    },
+    {
+      "id": "T0442",
+      "source": "A036",
+      "target": "SHOP",
+      "amount": 770,
+      "timestamp": "2026-01-02T07:46:00+00:00"
+    },
+    {
+      "id": "T0443",
+      "source": "A037",
+      "target": "SHOP",
+      "amount": 790,
+      "timestamp": "2026-01-02T07:47:00+00:00"
+    },
+    {
+      "id": "T0322",
+      "source": "A017",
+      "target": "A032",
+      "amount": 419.44,
+      "timestamp": "2026-01-02T08:45:00+00:00"
+    },
+    {
+      "id": "T0171",
+      "source": "A034",
+      "target": "A039",
+      "amount": 366.94,
+      "timestamp": "2026-01-02T08:56:00+00:00"
+    },
+    {
+      "id": "T0120",
+      "source": "A059",
+      "target": "A006",
+      "amount": 789.22,
+      "timestamp": "2026-01-02T09:08:00+00:00"
+    },
+    {
+      "id": "T0176",
+      "source": "A038",
+      "target": "A001",
+      "amount": 997.07,
+      "timestamp": "2026-01-02T10:33:00+00:00"
+    },
+    {
+      "id": "T0069",
+      "source": "A040",
+      "target": "A030",
+      "amount": 386.55,
+      "timestamp": "2026-01-02T11:44:00+00:00"
+    },
+    {
+      "id": "T0364",
+      "source": "A004",
+      "target": "A043",
+      "amount": 1229.42,
+      "timestamp": "2026-01-02T11:47:00+00:00"
+    },
+    {
+      "id": "T0266",
+      "source": "A012",
+      "target": "A030",
+      "amount": 1244.42,
+      "timestamp": "2026-01-02T13:02:00+00:00"
+    },
+    {
+      "id": "T0361",
+      "source": "A043",
+      "target": "A062",
+      "amount": 284.97,
+      "timestamp": "2026-01-02T13:33:00+00:00"
+    },
+    {
+      "id": "T0024",
+      "source": "A054",
+      "target": "A051",
+      "amount": 519.56,
+      "timestamp": "2026-01-02T13:46:00+00:00"
+    },
+    {
+      "id": "T0355",
+      "source": "A019",
+      "target": "A042",
+      "amount": 132.47,
+      "timestamp": "2026-01-02T14:37:00+00:00"
+    },
+    {
+      "id": "T0193",
+      "source": "A028",
+      "target": "A019",
+      "amount": 1273.61,
+      "timestamp": "2026-01-02T14:50:00+00:00"
+    },
+    {
+      "id": "T0240",
+      "source": "A030",
+      "target": "A063",
+      "amount": 1279.7,
+      "timestamp": "2026-01-02T15:04:00+00:00"
+    },
+    {
+      "id": "T0310",
+      "source": "A043",
+      "target": "A044",
+      "amount": 28.43,
+      "timestamp": "2026-01-02T15:07:00+00:00"
+    },
+    {
+      "id": "T0279",
+      "source": "A000",
+      "target": "A035",
+      "amount": 1204.6,
+      "timestamp": "2026-01-02T15:30:00+00:00"
+    },
+    {
+      "id": "T0237",
+      "source": "A037",
+      "target": "A045",
+      "amount": 537.28,
+      "timestamp": "2026-01-02T15:45:00+00:00"
+    },
+    {
+      "id": "T0336",
+      "source": "A044",
+      "target": "A018",
+      "amount": 346.05,
+      "timestamp": "2026-01-02T15:59:00+00:00"
+    },
+    {
+      "id": "T0375",
+      "source": "A034",
+      "target": "A057",
+      "amount": 1269.32,
+      "timestamp": "2026-01-02T16:14:00+00:00"
+    },
+    {
+      "id": "T0289",
+      "source": "A009",
+      "target": "A010",
+      "amount": 464.51,
+      "timestamp": "2026-01-02T16:30:00+00:00"
+    },
+    {
+      "id": "T0084",
+      "source": "A071",
+      "target": "A001",
+      "amount": 174.39,
+      "timestamp": "2026-01-02T16:42:00+00:00"
+    },
+    {
+      "id": "T0383",
+      "source": "A010",
+      "target": "A002",
+      "amount": 373.18,
+      "timestamp": "2026-01-02T16:49:00+00:00"
+    },
+    {
+      "id": "T0337",
+      "source": "A032",
+      "target": "A025",
+      "amount": 259.43,
+      "timestamp": "2026-01-02T17:44:00+00:00"
+    },
+    {
+      "id": "T0214",
+      "source": "A059",
+      "target": "A015",
+      "amount": 913.84,
+      "timestamp": "2026-01-02T18:02:00+00:00"
+    },
+    {
+      "id": "T0229",
+      "source": "A001",
+      "target": "A018",
+      "amount": 585.77,
+      "timestamp": "2026-01-02T18:09:00+00:00"
+    },
+    {
+      "id": "T0314",
+      "source": "A041",
+      "target": "A010",
+      "amount": 1239.01,
+      "timestamp": "2026-01-02T18:29:00+00:00"
+    },
+    {
+      "id": "T0413",
+      "source": "A009",
+      "target": "A051",
+      "amount": 521.37,
+      "timestamp": "2026-01-02T19:41:00+00:00"
+    },
+    {
+      "id": "T0374",
+      "source": "A066",
+      "target": "A015",
+      "amount": 413.39,
+      "timestamp": "2026-01-02T19:46:00+00:00"
+    },
+    {
+      "id": "T0033",
+      "source": "A064",
+      "target": "A025",
+      "amount": 230.92,
+      "timestamp": "2026-01-02T20:06:00+00:00"
+    },
+    {
+      "id": "T0371",
+      "source": "A064",
+      "target": "A067",
+      "amount": 597.75,
+      "timestamp": "2026-01-02T20:15:00+00:00"
+    },
+    {
+      "id": "T0149",
+      "source": "A021",
+      "target": "A014",
+      "amount": 1093.35,
+      "timestamp": "2026-01-02T20:43:00+00:00"
+    },
+    {
+      "id": "T0038",
+      "source": "A016",
+      "target": "A060",
+      "amount": 1326.65,
+      "timestamp": "2026-01-02T21:05:00+00:00"
+    },
+    {
+      "id": "T0365",
+      "source": "A048",
+      "target": "A019",
+      "amount": 243.9,
+      "timestamp": "2026-01-02T21:12:00+00:00"
+    },
+    {
+      "id": "T0333",
+      "source": "A039",
+      "target": "A043",
+      "amount": 325.77,
+      "timestamp": "2026-01-02T21:54:00+00:00"
+    },
+    {
+      "id": "T0112",
+      "source": "A065",
+      "target": "A060",
+      "amount": 1115.35,
+      "timestamp": "2026-01-02T22:20:00+00:00"
+    },
+    {
+      "id": "T0108",
+      "source": "A053",
+      "target": "A048",
+      "amount": 954.7,
+      "timestamp": "2026-01-02T23:31:00+00:00"
+    },
+    {
+      "id": "T0280",
+      "source": "A016",
+      "target": "A069",
+      "amount": 365.9,
+      "timestamp": "2026-01-02T23:38:00+00:00"
+    },
+    {
+      "id": "T0199",
+      "source": "A002",
+      "target": "A034",
+      "amount": 815.22,
+      "timestamp": "2026-01-02T23:50:00+00:00"
+    },
+    {
+      "id": "T0323",
+      "source": "A000",
+      "target": "A063",
+      "amount": 1050.88,
+      "timestamp": "2026-01-02T23:58:00+00:00"
+    },
+    {
+      "id": "T0090",
+      "source": "A019",
+      "target": "A030",
+      "amount": 1213.16,
+      "timestamp": "2026-01-03T00:20:00+00:00"
+    },
+    {
+      "id": "T0031",
+      "source": "A000",
+      "target": "A033",
+      "amount": 1361.21,
+      "timestamp": "2026-01-03T00:47:00+00:00"
+    },
+    {
+      "id": "T0175",
+      "source": "A024",
+      "target": "A037",
+      "amount": 333.93,
+      "timestamp": "2026-01-03T00:59:00+00:00"
+    },
+    {
+      "id": "T0238",
+      "source": "A031",
+      "target": "A067",
+      "amount": 588.63,
+      "timestamp": "2026-01-03T01:10:00+00:00"
+    },
+    {
+      "id": "T0407",
+      "source": "A054",
+      "target": "A010",
+      "amount": 614.24,
+      "timestamp": "2026-01-03T01:16:00+00:00"
+    },
+    {
+      "id": "T0389",
+      "source": "A045",
+      "target": "A030",
+      "amount": 807.52,
+      "timestamp": "2026-01-03T03:08:00+00:00"
+    },
+    {
+      "id": "T0223",
+      "source": "A048",
+      "target": "A058",
+      "amount": 1307.34,
+      "timestamp": "2026-01-03T03:30:00+00:00"
+    },
+    {
+      "id": "T0250",
+      "source": "A029",
+      "target": "A045",
+      "amount": 322.23,
+      "timestamp": "2026-01-03T03:55:00+00:00"
+    },
+    {
+      "id": "T0217",
+      "source": "A058",
+      "target": "A070",
+      "amount": 219.61,
+      "timestamp": "2026-01-03T04:02:00+00:00"
+    },
+    {
+      "id": "T0164",
+      "source": "A035",
+      "target": "A071",
+      "amount": 34.01,
+      "timestamp": "2026-01-03T04:10:00+00:00"
+    },
+    {
+      "id": "T0107",
+      "source": "A051",
+      "target": "A037",
+      "amount": 785.09,
+      "timestamp": "2026-01-03T04:23:00+00:00"
+    },
+    {
+      "id": "T0151",
+      "source": "A048",
+      "target": "A050",
+      "amount": 1319.23,
+      "timestamp": "2026-01-03T06:09:00+00:00"
+    },
+    {
+      "id": "T0245",
+      "source": "A032",
+      "target": "A058",
+      "amount": 1186.52,
+      "timestamp": "2026-01-03T06:23:00+00:00"
+    },
+    {
+      "id": "T0399",
+      "source": "A004",
+      "target": "A037",
+      "amount": 298.2,
+      "timestamp": "2026-01-03T06:28:00+00:00"
+    },
+    {
+      "id": "T0040",
+      "source": "A027",
+      "target": "A069",
+      "amount": 1062.27,
+      "timestamp": "2026-01-03T06:55:00+00:00"
+    },
+    {
+      "id": "T0068",
+      "source": "A066",
+      "target": "A040",
+      "amount": 1309.89,
+      "timestamp": "2026-01-03T07:46:00+00:00"
+    },
+    {
+      "id": "T0321",
+      "source": "A000",
+      "target": "A026",
+      "amount": 435.96,
+      "timestamp": "2026-01-03T09:40:00+00:00"
+    },
+    {
+      "id": "T0111",
+      "source": "A041",
+      "target": "A059",
+      "amount": 629.66,
+      "timestamp": "2026-01-03T10:21:00+00:00"
+    },
+    {
+      "id": "T0057",
+      "source": "A021",
+      "target": "A052",
+      "amount": 690.18,
+      "timestamp": "2026-01-03T10:22:00+00:00"
+    },
+    {
+      "id": "T0360",
+      "source": "A046",
+      "target": "A039",
+      "amount": 268.76,
+      "timestamp": "2026-01-03T10:29:00+00:00"
+    },
+    {
+      "id": "T0061",
+      "source": "A062",
+      "target": "A019",
+      "amount": 282.06,
+      "timestamp": "2026-01-03T11:26:00+00:00"
+    },
+    {
+      "id": "T0135",
+      "source": "A068",
+      "target": "A069",
+      "amount": 1123.82,
+      "timestamp": "2026-01-03T12:13:00+00:00"
+    },
+    {
+      "id": "T0285",
+      "source": "A065",
+      "target": "A013",
+      "amount": 643.77,
+      "timestamp": "2026-01-03T12:29:00+00:00"
+    },
+    {
+      "id": "T0167",
+      "source": "A057",
+      "target": "A002",
+      "amount": 148.41,
+      "timestamp": "2026-01-03T12:30:00+00:00"
+    },
+    {
+      "id": "T0376",
+      "source": "A055",
+      "target": "A011",
+      "amount": 1326.05,
+      "timestamp": "2026-01-03T12:37:00+00:00"
+    },
+    {
+      "id": "T0093",
+      "source": "A048",
+      "target": "A004",
+      "amount": 1204.86,
+      "timestamp": "2026-01-03T12:44:00+00:00"
+    },
+    {
+      "id": "T0114",
+      "source": "A011",
+      "target": "A030",
+      "amount": 948.46,
+      "timestamp": "2026-01-03T13:20:00+00:00"
+    },
+    {
+      "id": "T0258",
+      "source": "A009",
+      "target": "A018",
+      "amount": 1060.73,
+      "timestamp": "2026-01-03T13:36:00+00:00"
+    },
+    {
+      "id": "T0094",
+      "source": "A025",
+      "target": "A058",
+      "amount": 502.53,
+      "timestamp": "2026-01-03T14:08:00+00:00"
+    },
+    {
+      "id": "T0012",
+      "source": "A024",
+      "target": "A008",
+      "amount": 83.24,
+      "timestamp": "2026-01-03T14:13:00+00:00"
+    },
+    {
+      "id": "T0294",
+      "source": "A070",
+      "target": "A027",
+      "amount": 613.5,
+      "timestamp": "2026-01-03T14:23:00+00:00"
+    },
+    {
+      "id": "T0198",
+      "source": "A041",
+      "target": "A032",
+      "amount": 55.69,
+      "timestamp": "2026-01-03T14:30:00+00:00"
+    },
+    {
+      "id": "T0324",
+      "source": "A016",
+      "target": "A048",
+      "amount": 754.96,
+      "timestamp": "2026-01-03T14:50:00+00:00"
+    },
+    {
+      "id": "T0277",
+      "source": "A026",
+      "target": "A027",
+      "amount": 1142.01,
+      "timestamp": "2026-01-03T15:37:00+00:00"
+    },
+    {
+      "id": "T0191",
+      "source": "A036",
+      "target": "A058",
+      "amount": 118.23,
+      "timestamp": "2026-01-03T15:44:00+00:00"
+    },
+    {
+      "id": "T0127",
+      "source": "A056",
+      "target": "A009",
+      "amount": 1004.69,
+      "timestamp": "2026-01-03T16:01:00+00:00"
+    },
+    {
+      "id": "T0233",
+      "source": "A069",
+      "target": "A004",
+      "amount": 872.09,
+      "timestamp": "2026-01-03T16:06:00+00:00"
+    },
+    {
+      "id": "T0378",
+      "source": "A006",
+      "target": "A050",
+      "amount": 712.77,
+      "timestamp": "2026-01-03T16:22:00+00:00"
+    },
+    {
+      "id": "T0056",
+      "source": "A001",
+      "target": "A011",
+      "amount": 1298.39,
+      "timestamp": "2026-01-03T16:32:00+00:00"
+    },
+    {
+      "id": "T0366",
+      "source": "A056",
+      "target": "A005",
+      "amount": 586.98,
+      "timestamp": "2026-01-03T16:51:00+00:00"
+    },
+    {
+      "id": "T0385",
+      "source": "A030",
+      "target": "A038",
+      "amount": 188.15,
+      "timestamp": "2026-01-03T17:06:00+00:00"
+    },
+    {
+      "id": "T0331",
+      "source": "A011",
+      "target": "A055",
+      "amount": 1185.39,
+      "timestamp": "2026-01-03T18:26:00+00:00"
+    },
+    {
+      "id": "T0275",
+      "source": "A002",
+      "target": "A006",
+      "amount": 1105.78,
+      "timestamp": "2026-01-03T18:30:00+00:00"
+    },
+    {
+      "id": "T0216",
+      "source": "A053",
+      "target": "A061",
+      "amount": 1372.74,
+      "timestamp": "2026-01-03T18:33:00+00:00"
+    },
+    {
+      "id": "T0160",
+      "source": "A011",
+      "target": "A035",
+      "amount": 1236.65,
+      "timestamp": "2026-01-03T18:35:00+00:00"
+    },
+    {
+      "id": "T0117",
+      "source": "A024",
+      "target": "A049",
+      "amount": 702.24,
+      "timestamp": "2026-01-03T18:37:00+00:00"
+    },
+    {
+      "id": "T0016",
+      "source": "A009",
+      "target": "A021",
+      "amount": 757.11,
+      "timestamp": "2026-01-03T18:50:00+00:00"
+    },
+    {
+      "id": "T0115",
+      "source": "A025",
+      "target": "A018",
+      "amount": 53.71,
+      "timestamp": "2026-01-03T18:51:00+00:00"
+    },
+    {
+      "id": "T0000",
+      "source": "A014",
+      "target": "A003",
+      "amount": 1043.34,
+      "timestamp": "2026-01-03T18:52:00+00:00"
+    },
+    {
+      "id": "T0159",
+      "source": "A055",
+      "target": "A034",
+      "amount": 464.78,
+      "timestamp": "2026-01-03T19:02:00+00:00"
+    },
+    {
+      "id": "T0022",
+      "source": "A058",
+      "target": "A018",
+      "amount": 385.53,
+      "timestamp": "2026-01-03T19:20:00+00:00"
+    },
+    {
+      "id": "T0042",
+      "source": "A056",
+      "target": "A066",
+      "amount": 643.05,
+      "timestamp": "2026-01-03T19:41:00+00:00"
+    },
+    {
+      "id": "T0183",
+      "source": "A019",
+      "target": "A038",
+      "amount": 137.55,
+      "timestamp": "2026-01-03T19:46:00+00:00"
+    },
+    {
+      "id": "T0393",
+      "source": "A005",
+      "target": "A049",
+      "amount": 1373.83,
+      "timestamp": "2026-01-03T21:15:00+00:00"
+    },
+    {
+      "id": "T0098",
+      "source": "A042",
+      "target": "A003",
+      "amount": 179.17,
+      "timestamp": "2026-01-03T23:19:00+00:00"
+    },
+    {
+      "id": "T0082",
+      "source": "A000",
+      "target": "A042",
+      "amount": 1084.14,
+      "timestamp": "2026-01-03T23:31:00+00:00"
+    },
+    {
+      "id": "T0079",
+      "source": "A026",
+      "target": "A043",
+      "amount": 300.96,
+      "timestamp": "2026-01-04T00:05:00+00:00"
+    },
+    {
+      "id": "T0187",
+      "source": "A012",
+      "target": "A026",
+      "amount": 883.21,
+      "timestamp": "2026-01-04T00:15:00+00:00"
+    },
+    {
+      "id": "T0230",
+      "source": "A009",
+      "target": "A060",
+      "amount": 1098.5,
+      "timestamp": "2026-01-04T00:22:00+00:00"
+    },
+    {
+      "id": "T0282",
+      "source": "A030",
+      "target": "A041",
+      "amount": 41.78,
+      "timestamp": "2026-01-04T00:27:00+00:00"
+    },
+    {
+      "id": "T0015",
+      "source": "A020",
+      "target": "A047",
+      "amount": 510.27,
+      "timestamp": "2026-01-04T00:54:00+00:00"
+    },
+    {
+      "id": "T0308",
+      "source": "A071",
+      "target": "A003",
+      "amount": 860.41,
+      "timestamp": "2026-01-04T01:01:00+00:00"
+    },
+    {
+      "id": "T0315",
+      "source": "A020",
+      "target": "A006",
+      "amount": 950.08,
+      "timestamp": "2026-01-04T02:18:00+00:00"
+    },
+    {
+      "id": "T0255",
+      "source": "A046",
+      "target": "A067",
+      "amount": 712.48,
+      "timestamp": "2026-01-04T02:25:00+00:00"
+    },
+    {
+      "id": "T0215",
+      "source": "A063",
+      "target": "A037",
+      "amount": 722.24,
+      "timestamp": "2026-01-04T02:39:00+00:00"
+    },
+    {
+      "id": "T0126",
+      "source": "A066",
+      "target": "A062",
+      "amount": 884.91,
+      "timestamp": "2026-01-04T02:59:00+00:00"
+    },
+    {
+      "id": "T0341",
+      "source": "A060",
+      "target": "A056",
+      "amount": 891.31,
+      "timestamp": "2026-01-04T03:00:00+00:00"
+    },
+    {
+      "id": "T0272",
+      "source": "A069",
+      "target": "A045",
+      "amount": 103.56,
+      "timestamp": "2026-01-04T03:20:00+00:00"
+    },
+    {
+      "id": "T0218",
+      "source": "A065",
+      "target": "A017",
+      "amount": 1212.36,
+      "timestamp": "2026-01-04T03:26:00+00:00"
+    },
+    {
+      "id": "T0125",
+      "source": "A057",
+      "target": "A033",
+      "amount": 1057.45,
+      "timestamp": "2026-01-04T03:43:00+00:00"
+    },
+    {
+      "id": "T0005",
+      "source": "A053",
+      "target": "A028",
+      "amount": 639.91,
+      "timestamp": "2026-01-04T03:57:00+00:00"
+    },
+    {
+      "id": "T0200",
+      "source": "A060",
+      "target": "A066",
+      "amount": 919.08,
+      "timestamp": "2026-01-04T03:57:00+00:00"
+    },
+    {
+      "id": "T0046",
+      "source": "A042",
+      "target": "A009",
+      "amount": 729.54,
+      "timestamp": "2026-01-04T04:02:00+00:00"
+    },
+    {
+      "id": "T0053",
+      "source": "A057",
+      "target": "A017",
+      "amount": 602.2,
+      "timestamp": "2026-01-04T04:03:00+00:00"
+    },
+    {
+      "id": "T0419",
+      "source": "A046",
+      "target": "A050",
+      "amount": 453.85,
+      "timestamp": "2026-01-04T04:06:00+00:00"
+    },
+    {
+      "id": "T0096",
+      "source": "A042",
+      "target": "A035",
+      "amount": 1212.81,
+      "timestamp": "2026-01-04T04:13:00+00:00"
+    },
+    {
+      "id": "T0269",
+      "source": "A062",
+      "target": "A052",
+      "amount": 1315.89,
+      "timestamp": "2026-01-04T04:23:00+00:00"
+    },
+    {
+      "id": "T0351",
+      "source": "A066",
+      "target": "A020",
+      "amount": 522.18,
+      "timestamp": "2026-01-04T05:14:00+00:00"
+    },
+    {
+      "id": "T0318",
+      "source": "A014",
+      "target": "A044",
+      "amount": 613.28,
+      "timestamp": "2026-01-04T05:20:00+00:00"
+    },
+    {
+      "id": "T0249",
+      "source": "A006",
+      "target": "A063",
+      "amount": 1169.32,
+      "timestamp": "2026-01-04T06:09:00+00:00"
+    },
+    {
+      "id": "T0210",
+      "source": "A026",
+      "target": "A034",
+      "amount": 777.92,
+      "timestamp": "2026-01-04T06:39:00+00:00"
+    },
+    {
+      "id": "T0190",
+      "source": "A060",
+      "target": "A037",
+      "amount": 65.04,
+      "timestamp": "2026-01-04T06:40:00+00:00"
+    },
+    {
+      "id": "T0384",
+      "source": "A070",
+      "target": "A067",
+      "amount": 604.09,
+      "timestamp": "2026-01-04T06:40:00+00:00"
+    },
+    {
+      "id": "T0247",
+      "source": "A045",
+      "target": "A037",
+      "amount": 1389.92,
+      "timestamp": "2026-01-04T08:37:00+00:00"
+    },
+    {
+      "id": "T0032",
+      "source": "A064",
+      "target": "A013",
+      "amount": 1221.32,
+      "timestamp": "2026-01-04T09:29:00+00:00"
+    },
+    {
+      "id": "T0220",
+      "source": "A034",
+      "target": "A000",
+      "amount": 410.32,
+      "timestamp": "2026-01-04T09:31:00+00:00"
+    },
+    {
+      "id": "T0235",
+      "source": "A012",
+      "target": "A056",
+      "amount": 249.58,
+      "timestamp": "2026-01-04T09:46:00+00:00"
+    },
+    {
+      "id": "T0105",
+      "source": "A040",
+      "target": "A015",
+      "amount": 1013.26,
+      "timestamp": "2026-01-04T10:00:00+00:00"
+    },
+    {
+      "id": "T0152",
+      "source": "A009",
+      "target": "A031",
+      "amount": 160.62,
+      "timestamp": "2026-01-04T10:21:00+00:00"
+    },
+    {
+      "id": "T0195",
+      "source": "A036",
+      "target": "A056",
+      "amount": 191.61,
+      "timestamp": "2026-01-04T11:02:00+00:00"
+    },
+    {
+      "id": "T0194",
+      "source": "A009",
+      "target": "A007",
+      "amount": 248.97,
+      "timestamp": "2026-01-04T11:59:00+00:00"
+    },
+    {
+      "id": "T0309",
+      "source": "A003",
+      "target": "A023",
+      "amount": 397.11,
+      "timestamp": "2026-01-04T12:22:00+00:00"
+    },
+    {
+      "id": "T0342",
+      "source": "A007",
+      "target": "A045",
+      "amount": 720.12,
+      "timestamp": "2026-01-04T12:45:00+00:00"
+    },
+    {
+      "id": "T0313",
+      "source": "A058",
+      "target": "A043",
+      "amount": 237.22,
+      "timestamp": "2026-01-04T13:05:00+00:00"
+    },
+    {
+      "id": "T0150",
+      "source": "A039",
+      "target": "A013",
+      "amount": 818.58,
+      "timestamp": "2026-01-04T13:11:00+00:00"
+    },
+    {
+      "id": "T0296",
+      "source": "A053",
+      "target": "A012",
+      "amount": 451.32,
+      "timestamp": "2026-01-04T13:20:00+00:00"
+    },
+    {
+      "id": "T0062",
+      "source": "A007",
+      "target": "A069",
+      "amount": 104.12,
+      "timestamp": "2026-01-04T13:38:00+00:00"
+    },
+    {
+      "id": "T0100",
+      "source": "A055",
+      "target": "A044",
+      "amount": 1025.39,
+      "timestamp": "2026-01-04T13:39:00+00:00"
+    },
+    {
+      "id": "T0205",
+      "source": "A070",
+      "target": "A004",
+      "amount": 647.66,
+      "timestamp": "2026-01-04T13:53:00+00:00"
+    },
+    {
+      "id": "T0329",
+      "source": "A037",
+      "target": "A014",
+      "amount": 578.94,
+      "timestamp": "2026-01-04T16:41:00+00:00"
+    },
+    {
+      "id": "T0106",
+      "source": "A064",
+      "target": "A039",
+      "amount": 940.31,
+      "timestamp": "2026-01-04T17:04:00+00:00"
+    },
+    {
+      "id": "T0253",
+      "source": "A016",
+      "target": "A011",
+      "amount": 1275.29,
+      "timestamp": "2026-01-04T17:12:00+00:00"
+    },
+    {
+      "id": "T0141",
+      "source": "A023",
+      "target": "A006",
+      "amount": 379.02,
+      "timestamp": "2026-01-04T17:23:00+00:00"
+    },
+    {
+      "id": "T0231",
+      "source": "A043",
+      "target": "A050",
+      "amount": 916.77,
+      "timestamp": "2026-01-04T17:43:00+00:00"
+    },
+    {
+      "id": "T0203",
+      "source": "A041",
+      "target": "A013",
+      "amount": 1203.67,
+      "timestamp": "2026-01-04T18:03:00+00:00"
+    },
+    {
+      "id": "T0104",
+      "source": "A025",
+      "target": "A046",
+      "amount": 615.19,
+      "timestamp": "2026-01-04T18:09:00+00:00"
+    },
+    {
+      "id": "T0227",
+      "source": "A016",
+      "target": "A064",
+      "amount": 1352.19,
+      "timestamp": "2026-01-04T18:39:00+00:00"
+    },
+    {
+      "id": "T0091",
+      "source": "A052",
+      "target": "A003",
+      "amount": 267.52,
+      "timestamp": "2026-01-04T18:42:00+00:00"
+    },
+    {
+      "id": "T0395",
+      "source": "A030",
+      "target": "A013",
+      "amount": 1084.67,
+      "timestamp": "2026-01-04T18:47:00+00:00"
+    },
+    {
+      "id": "T0202",
+      "source": "A011",
+      "target": "A060",
+      "amount": 500.19,
+      "timestamp": "2026-01-04T19:00:00+00:00"
+    },
+    {
+      "id": "T0113",
+      "source": "A010",
+      "target": "A036",
+      "amount": 731.32,
+      "timestamp": "2026-01-04T19:31:00+00:00"
+    },
+    {
+      "id": "T0380",
+      "source": "A040",
+      "target": "A012",
+      "amount": 1178.06,
+      "timestamp": "2026-01-04T19:33:00+00:00"
+    },
+    {
+      "id": "T0007",
+      "source": "A035",
+      "target": "A019",
+      "amount": 317.13,
+      "timestamp": "2026-01-04T19:54:00+00:00"
+    },
+    {
+      "id": "T0396",
+      "source": "A017",
+      "target": "A005",
+      "amount": 506.17,
+      "timestamp": "2026-01-04T20:26:00+00:00"
+    },
+    {
+      "id": "T0051",
+      "source": "A012",
+      "target": "A007",
+      "amount": 575.62,
+      "timestamp": "2026-01-04T20:39:00+00:00"
+    },
+    {
+      "id": "T0029",
+      "source": "A014",
+      "target": "A068",
+      "amount": 1056.21,
+      "timestamp": "2026-01-04T20:53:00+00:00"
+    },
+    {
+      "id": "T0006",
+      "source": "A000",
+      "target": "A020",
+      "amount": 983.43,
+      "timestamp": "2026-01-04T20:54:00+00:00"
+    },
+    {
+      "id": "T0154",
+      "source": "A047",
+      "target": "A008",
+      "amount": 718.23,
+      "timestamp": "2026-01-04T21:10:00+00:00"
+    },
+    {
+      "id": "T0348",
+      "source": "A019",
+      "target": "A007",
+      "amount": 641.72,
+      "timestamp": "2026-01-04T21:46:00+00:00"
+    },
+    {
+      "id": "T0169",
+      "source": "A047",
+      "target": "A060",
+      "amount": 783.79,
+      "timestamp": "2026-01-04T21:52:00+00:00"
+    },
+    {
+      "id": "T0394",
+      "source": "A002",
+      "target": "A045",
+      "amount": 1108.16,
+      "timestamp": "2026-01-04T22:09:00+00:00"
+    },
+    {
+      "id": "T0335",
+      "source": "A065",
+      "target": "A024",
+      "amount": 1270.17,
+      "timestamp": "2026-01-04T23:24:00+00:00"
+    },
+    {
+      "id": "T0410",
+      "source": "A054",
+      "target": "A021",
+      "amount": 971.88,
+      "timestamp": "2026-01-04T23:59:00+00:00"
+    },
+    {
+      "id": "T0133",
+      "source": "A002",
+      "target": "A048",
+      "amount": 678.23,
+      "timestamp": "2026-01-05T00:03:00+00:00"
+    },
+    {
+      "id": "T0411",
+      "source": "A057",
+      "target": "A005",
+      "amount": 1023.0,
+      "timestamp": "2026-01-05T00:16:00+00:00"
+    },
+    {
+      "id": "T0325",
+      "source": "A064",
+      "target": "A071",
+      "amount": 1170.03,
+      "timestamp": "2026-01-05T00:42:00+00:00"
+    },
+    {
+      "id": "T0162",
+      "source": "A041",
+      "target": "A023",
+      "amount": 692.82,
+      "timestamp": "2026-01-05T00:53:00+00:00"
+    },
+    {
+      "id": "T0281",
+      "source": "A014",
+      "target": "A003",
+      "amount": 201.89,
+      "timestamp": "2026-01-05T01:49:00+00:00"
+    },
+    {
+      "id": "T0008",
+      "source": "A013",
+      "target": "A011",
+      "amount": 544.3,
+      "timestamp": "2026-01-05T02:01:00+00:00"
+    },
+    {
+      "id": "T0011",
+      "source": "A010",
+      "target": "A070",
+      "amount": 424.59,
+      "timestamp": "2026-01-05T02:45:00+00:00"
+    },
+    {
+      "id": "T0330",
+      "source": "A021",
+      "target": "A058",
+      "amount": 1168.2,
+      "timestamp": "2026-01-05T02:48:00+00:00"
+    },
+    {
+      "id": "T0284",
+      "source": "A014",
+      "target": "A008",
+      "amount": 677.22,
+      "timestamp": "2026-01-05T02:51:00+00:00"
+    },
+    {
+      "id": "T0035",
+      "source": "A041",
+      "target": "A062",
+      "amount": 46.88,
+      "timestamp": "2026-01-05T03:07:00+00:00"
+    },
+    {
+      "id": "T0014",
+      "source": "A048",
+      "target": "A035",
+      "amount": 645.71,
+      "timestamp": "2026-01-05T03:37:00+00:00"
+    },
+    {
+      "id": "T0252",
+      "source": "A039",
+      "target": "A056",
+      "amount": 66.04,
+      "timestamp": "2026-01-05T03:37:00+00:00"
+    },
+    {
+      "id": "T0415",
+      "source": "A004",
+      "target": "A016",
+      "amount": 112.78,
+      "timestamp": "2026-01-05T04:01:00+00:00"
+    },
+    {
+      "id": "T0271",
+      "source": "A030",
+      "target": "A046",
+      "amount": 157.11,
+      "timestamp": "2026-01-05T04:18:00+00:00"
+    },
+    {
+      "id": "T0403",
+      "source": "A042",
+      "target": "A034",
+      "amount": 191.78,
+      "timestamp": "2026-01-05T04:29:00+00:00"
+    },
+    {
+      "id": "T0343",
+      "source": "A059",
+      "target": "A057",
+      "amount": 71.9,
+      "timestamp": "2026-01-05T04:41:00+00:00"
+    },
+    {
+      "id": "T0148",
+      "source": "A027",
+      "target": "A059",
+      "amount": 985.26,
+      "timestamp": "2026-01-05T04:43:00+00:00"
+    },
+    {
+      "id": "T0261",
+      "source": "A047",
+      "target": "A033",
+      "amount": 826.69,
+      "timestamp": "2026-01-05T05:26:00+00:00"
+    },
+    {
+      "id": "T0417",
+      "source": "A019",
+      "target": "A057",
+      "amount": 1329.38,
+      "timestamp": "2026-01-05T05:35:00+00:00"
+    },
+    {
+      "id": "T0299",
+      "source": "A055",
+      "target": "A012",
+      "amount": 1047.53,
+      "timestamp": "2026-01-05T05:45:00+00:00"
+    },
+    {
+      "id": "T0041",
+      "source": "A039",
+      "target": "A051",
+      "amount": 1393.31,
+      "timestamp": "2026-01-05T05:58:00+00:00"
+    },
+    {
+      "id": "T0357",
+      "source": "A016",
+      "target": "A010",
+      "amount": 447.22,
+      "timestamp": "2026-01-05T06:51:00+00:00"
+    },
+    {
+      "id": "T0010",
+      "source": "A068",
+      "target": "A015",
+      "amount": 1362.9,
+      "timestamp": "2026-01-05T07:21:00+00:00"
+    },
+    {
+      "id": "T0142",
+      "source": "A027",
+      "target": "A058",
+      "amount": 471.05,
+      "timestamp": "2026-01-05T07:31:00+00:00"
+    },
+    {
+      "id": "T0225",
+      "source": "A005",
+      "target": "A040",
+      "amount": 1047.69,
+      "timestamp": "2026-01-05T08:06:00+00:00"
+    },
+    {
+      "id": "T0246",
+      "source": "A049",
+      "target": "A061",
+      "amount": 167.18,
+      "timestamp": "2026-01-05T08:08:00+00:00"
+    },
+    {
+      "id": "T0370",
+      "source": "A056",
+      "target": "A059",
+      "amount": 1081.83,
+      "timestamp": "2026-01-05T08:16:00+00:00"
+    },
+    {
+      "id": "T0239",
+      "source": "A021",
+      "target": "A022",
+      "amount": 128.98,
+      "timestamp": "2026-01-05T08:27:00+00:00"
+    },
+    {
+      "id": "T0129",
+      "source": "A010",
+      "target": "A017",
+      "amount": 228.15,
+      "timestamp": "2026-01-05T08:35:00+00:00"
+    },
+    {
+      "id": "T0404",
+      "source": "A055",
+      "target": "A051",
+      "amount": 1045.76,
+      "timestamp": "2026-01-05T09:34:00+00:00"
+    },
+    {
+      "id": "T0356",
+      "source": "A044",
+      "target": "A039",
+      "amount": 1355.42,
+      "timestamp": "2026-01-05T11:01:00+00:00"
+    },
+    {
+      "id": "T0259",
+      "source": "A050",
+      "target": "A071",
+      "amount": 524.77,
+      "timestamp": "2026-01-05T11:44:00+00:00"
+    },
+    {
+      "id": "T0021",
+      "source": "A040",
+      "target": "A027",
+      "amount": 924.51,
+      "timestamp": "2026-01-05T12:02:00+00:00"
+    },
+    {
+      "id": "T0332",
+      "source": "A055",
+      "target": "A051",
+      "amount": 743.07,
+      "timestamp": "2026-01-05T12:04:00+00:00"
+    },
+    {
+      "id": "T0095",
+      "source": "A028",
+      "target": "A003",
+      "amount": 930.85,
+      "timestamp": "2026-01-05T12:48:00+00:00"
+    },
+    {
+      "id": "T0295",
+      "source": "A052",
+      "target": "A043",
+      "amount": 1161.84,
+      "timestamp": "2026-01-05T12:52:00+00:00"
+    },
+    {
+      "id": "T0204",
+      "source": "A052",
+      "target": "A063",
+      "amount": 417.74,
+      "timestamp": "2026-01-05T13:21:00+00:00"
+    },
+    {
+      "id": "T0019",
+      "source": "A029",
+      "target": "A004",
+      "amount": 1130.96,
+      "timestamp": "2026-01-05T13:32:00+00:00"
+    },
+    {
+      "id": "T0206",
+      "source": "A032",
+      "target": "A041",
+      "amount": 179.97,
+      "timestamp": "2026-01-05T14:22:00+00:00"
+    },
+    {
+      "id": "T0137",
+      "source": "A003",
+      "target": "A049",
+      "amount": 483.86,
+      "timestamp": "2026-01-05T14:24:00+00:00"
+    },
+    {
+      "id": "T0089",
+      "source": "A045",
+      "target": "A071",
+      "amount": 1240.11,
+      "timestamp": "2026-01-05T14:58:00+00:00"
+    },
+    {
+      "id": "T0048",
+      "source": "A060",
+      "target": "A031",
+      "amount": 1102.77,
+      "timestamp": "2026-01-05T15:09:00+00:00"
+    },
+    {
+      "id": "T0130",
+      "source": "A019",
+      "target": "A027",
+      "amount": 108.64,
+      "timestamp": "2026-01-05T15:18:00+00:00"
+    },
+    {
+      "id": "T0224",
+      "source": "A030",
+      "target": "A049",
+      "amount": 342.32,
+      "timestamp": "2026-01-05T16:10:00+00:00"
+    },
+    {
+      "id": "T0301",
+      "source": "A071",
+      "target": "A042",
+      "amount": 944.62,
+      "timestamp": "2026-01-05T16:10:00+00:00"
+    },
+    {
+      "id": "T0377",
+      "source": "A057",
+      "target": "A044",
+      "amount": 1304.05,
+      "timestamp": "2026-01-05T17:17:00+00:00"
+    },
+    {
+      "id": "T0328",
+      "source": "A040",
+      "target": "A054",
+      "amount": 811.29,
+      "timestamp": "2026-01-05T18:03:00+00:00"
+    },
+    {
+      "id": "T0134",
+      "source": "A038",
+      "target": "A049",
+      "amount": 1197.76,
+      "timestamp": "2026-01-05T18:25:00+00:00"
+    },
+    {
+      "id": "T0067",
+      "source": "A031",
+      "target": "A005",
+      "amount": 874.75,
+      "timestamp": "2026-01-05T18:28:00+00:00"
+    },
+    {
+      "id": "T0312",
+      "source": "A011",
+      "target": "A067",
+      "amount": 316.88,
+      "timestamp": "2026-01-05T18:38:00+00:00"
+    },
+    {
+      "id": "T0026",
+      "source": "A014",
+      "target": "A019",
+      "amount": 885.88,
+      "timestamp": "2026-01-05T19:16:00+00:00"
+    },
+    {
+      "id": "T0039",
+      "source": "A033",
+      "target": "A067",
+      "amount": 1223.96,
+      "timestamp": "2026-01-05T19:32:00+00:00"
+    },
+    {
+      "id": "T0244",
+      "source": "A044",
+      "target": "A038",
+      "amount": 901.74,
+      "timestamp": "2026-01-05T19:51:00+00:00"
+    },
+    {
+      "id": "T0287",
+      "source": "A007",
+      "target": "A061",
+      "amount": 1189.27,
+      "timestamp": "2026-01-05T20:24:00+00:00"
+    },
+    {
+      "id": "T0083",
+      "source": "A020",
+      "target": "A056",
+      "amount": 781.32,
+      "timestamp": "2026-01-05T20:47:00+00:00"
+    },
+    {
+      "id": "T0153",
+      "source": "A015",
+      "target": "A005",
+      "amount": 499.14,
+      "timestamp": "2026-01-05T20:58:00+00:00"
+    },
+    {
+      "id": "T0049",
+      "source": "A024",
+      "target": "A012",
+      "amount": 153.76,
+      "timestamp": "2026-01-05T21:42:00+00:00"
+    },
+    {
+      "id": "T0197",
+      "source": "A056",
+      "target": "A010",
+      "amount": 845.29,
+      "timestamp": "2026-01-05T21:58:00+00:00"
+    },
+    {
+      "id": "T0234",
+      "source": "A036",
+      "target": "A029",
+      "amount": 1050.54,
+      "timestamp": "2026-01-05T22:30:00+00:00"
+    },
+    {
+      "id": "T0102",
+      "source": "A024",
+      "target": "A032",
+      "amount": 81.25,
+      "timestamp": "2026-01-05T23:04:00+00:00"
+    },
+    {
+      "id": "T0074",
+      "source": "A031",
+      "target": "A047",
+      "amount": 413.28,
+      "timestamp": "2026-01-05T23:39:00+00:00"
+    },
+    {
+      "id": "T0414",
+      "source": "A003",
+      "target": "A018",
+      "amount": 1191.16,
+      "timestamp": "2026-01-05T23:39:00+00:00"
+    },
+    {
+      "id": "T0243",
+      "source": "A036",
+      "target": "A069",
+      "amount": 238.01,
+      "timestamp": "2026-01-06T00:37:00+00:00"
+    },
+    {
+      "id": "T0316",
+      "source": "A056",
+      "target": "A054",
+      "amount": 690.21,
+      "timestamp": "2026-01-06T00:42:00+00:00"
+    },
+    {
+      "id": "T0122",
+      "source": "A071",
+      "target": "A040",
+      "amount": 1331.05,
+      "timestamp": "2026-01-06T00:51:00+00:00"
+    },
+    {
+      "id": "T0185",
+      "source": "A028",
+      "target": "A066",
+      "amount": 544.92,
+      "timestamp": "2026-01-06T00:53:00+00:00"
+    },
+    {
+      "id": "T0288",
+      "source": "A013",
+      "target": "A062",
+      "amount": 1003.11,
+      "timestamp": "2026-01-06T01:07:00+00:00"
+    },
+    {
+      "id": "T0270",
+      "source": "A004",
+      "target": "A047",
+      "amount": 319.83,
+      "timestamp": "2026-01-06T01:25:00+00:00"
+    },
+    {
+      "id": "T0367",
+      "source": "A056",
+      "target": "A036",
+      "amount": 1058.3,
+      "timestamp": "2026-01-06T02:35:00+00:00"
+    },
+    {
+      "id": "T0189",
+      "source": "A009",
+      "target": "A020",
+      "amount": 23.69,
+      "timestamp": "2026-01-06T03:01:00+00:00"
+    },
+    {
+      "id": "T0030",
+      "source": "A014",
+      "target": "A037",
+      "amount": 619.98,
+      "timestamp": "2026-01-06T03:53:00+00:00"
+    },
+    {
+      "id": "T0170",
+      "source": "A054",
+      "target": "A070",
+      "amount": 476.49,
+      "timestamp": "2026-01-06T03:54:00+00:00"
+    },
+    {
+      "id": "T0273",
+      "source": "A024",
+      "target": "A015",
+      "amount": 1329.63,
+      "timestamp": "2026-01-06T04:10:00+00:00"
+    },
+    {
+      "id": "T0260",
+      "source": "A001",
+      "target": "A033",
+      "amount": 760.47,
+      "timestamp": "2026-01-06T04:11:00+00:00"
+    },
+    {
+      "id": "T0059",
+      "source": "A049",
+      "target": "A033",
+      "amount": 1298.59,
+      "timestamp": "2026-01-06T04:14:00+00:00"
+    },
+    {
+      "id": "T0228",
+      "source": "A012",
+      "target": "A056",
+      "amount": 157.6,
+      "timestamp": "2026-01-06T04:46:00+00:00"
+    },
+    {
+      "id": "T0398",
+      "source": "A023",
+      "target": "A017",
+      "amount": 107.08,
+      "timestamp": "2026-01-06T04:58:00+00:00"
+    },
+    {
+      "id": "T0009",
+      "source": "A044",
+      "target": "A033",
+      "amount": 1133.84,
+      "timestamp": "2026-01-06T05:27:00+00:00"
+    },
+    {
+      "id": "T0241",
+      "source": "A029",
+      "target": "A059",
+      "amount": 900.31,
+      "timestamp": "2026-01-06T05:29:00+00:00"
+    },
+    {
+      "id": "T0156",
+      "source": "A055",
+      "target": "A046",
+      "amount": 897.11,
+      "timestamp": "2026-01-06T05:32:00+00:00"
+    },
+    {
+      "id": "T0140",
+      "source": "A010",
+      "target": "A054",
+      "amount": 207.27,
+      "timestamp": "2026-01-06T06:04:00+00:00"
+    },
+    {
+      "id": "T0263",
+      "source": "A041",
+      "target": "A028",
+      "amount": 913.76,
+      "timestamp": "2026-01-06T06:46:00+00:00"
+    },
+    {
+      "id": "T0158",
+      "source": "A034",
+      "target": "A068",
+      "amount": 1089.01,
+      "timestamp": "2026-01-06T06:56:00+00:00"
+    },
+    {
+      "id": "T0242",
+      "source": "A032",
+      "target": "A001",
+      "amount": 1260.49,
+      "timestamp": "2026-01-06T07:02:00+00:00"
+    },
+    {
+      "id": "T0027",
+      "source": "A008",
+      "target": "A049",
+      "amount": 546.63,
+      "timestamp": "2026-01-06T07:48:00+00:00"
+    },
+    {
+      "id": "T0257",
+      "source": "A037",
+      "target": "A043",
+      "amount": 1129.84,
+      "timestamp": "2026-01-06T07:53:00+00:00"
+    },
+    {
+      "id": "T0368",
+      "source": "A029",
+      "target": "A068",
+      "amount": 350.05,
+      "timestamp": "2026-01-06T08:04:00+00:00"
+    },
+    {
+      "id": "T0179",
+      "source": "A013",
+      "target": "A001",
+      "amount": 812.21,
+      "timestamp": "2026-01-06T08:10:00+00:00"
+    },
+    {
+      "id": "T0392",
+      "source": "A070",
+      "target": "A002",
+      "amount": 558.83,
+      "timestamp": "2026-01-06T08:22:00+00:00"
+    },
+    {
+      "id": "T0381",
+      "source": "A018",
+      "target": "A017",
+      "amount": 72.86,
+      "timestamp": "2026-01-06T09:00:00+00:00"
+    },
+    {
+      "id": "T0297",
+      "source": "A032",
+      "target": "A047",
+      "amount": 1335.96,
+      "timestamp": "2026-01-06T09:30:00+00:00"
+    },
+    {
+      "id": "T0124",
+      "source": "A057",
+      "target": "A020",
+      "amount": 1046.24,
+      "timestamp": "2026-01-06T09:37:00+00:00"
+    },
+    {
+      "id": "T0397",
+      "source": "A022",
+      "target": "A059",
+      "amount": 1373.53,
+      "timestamp": "2026-01-06T10:40:00+00:00"
+    },
+    {
+      "id": "T0256",
+      "source": "A021",
+      "target": "A032",
+      "amount": 1281.39,
+      "timestamp": "2026-01-06T11:34:00+00:00"
+    },
+    {
+      "id": "T0304",
+      "source": "A064",
+      "target": "A027",
+      "amount": 233.53,
+      "timestamp": "2026-01-06T11:40:00+00:00"
+    },
+    {
+      "id": "T0173",
+      "source": "A023",
+      "target": "A024",
+      "amount": 318.61,
+      "timestamp": "2026-01-06T12:13:00+00:00"
+    },
+    {
+      "id": "T0221",
+      "source": "A062",
+      "target": "A019",
+      "amount": 636.24,
+      "timestamp": "2026-01-06T12:15:00+00:00"
+    },
+    {
+      "id": "T0136",
+      "source": "A062",
+      "target": "A028",
+      "amount": 396.65,
+      "timestamp": "2026-01-06T12:36:00+00:00"
+    },
+    {
+      "id": "T0232",
+      "source": "A068",
+      "target": "A048",
+      "amount": 1336.71,
+      "timestamp": "2026-01-06T13:14:00+00:00"
+    },
+    {
+      "id": "T0165",
+      "source": "A010",
+      "target": "A030",
+      "amount": 1013.7,
+      "timestamp": "2026-01-06T13:24:00+00:00"
+    },
+    {
+      "id": "T0166",
+      "source": "A071",
+      "target": "A030",
+      "amount": 973.04,
+      "timestamp": "2026-01-06T14:01:00+00:00"
+    },
+    {
+      "id": "T0178",
+      "source": "A037",
+      "target": "A016",
+      "amount": 900.26,
+      "timestamp": "2026-01-06T14:02:00+00:00"
+    },
+    {
+      "id": "T0201",
+      "source": "A023",
+      "target": "A055",
+      "amount": 896.0,
+      "timestamp": "2026-01-06T14:16:00+00:00"
+    },
+    {
+      "id": "T0196",
+      "source": "A051",
+      "target": "A034",
+      "amount": 710.65,
+      "timestamp": "2026-01-06T14:50:00+00:00"
+    },
+    {
+      "id": "T0338",
+      "source": "A009",
+      "target": "A022",
+      "amount": 1332.78,
+      "timestamp": "2026-01-06T14:55:00+00:00"
+    },
+    {
+      "id": "T0161",
+      "source": "A059",
+      "target": "A048",
+      "amount": 484.23,
+      "timestamp": "2026-01-06T14:58:00+00:00"
+    },
+    {
+      "id": "T0405",
+      "source": "A043",
+      "target": "A023",
+      "amount": 704.76,
+      "timestamp": "2026-01-06T15:51:00+00:00"
+    },
+    {
+      "id": "T0386",
+      "source": "A053",
+      "target": "A058",
+      "amount": 106.67,
+      "timestamp": "2026-01-06T16:29:00+00:00"
+    },
+    {
+      "id": "T0347",
+      "source": "A024",
+      "target": "A041",
+      "amount": 854.91,
+      "timestamp": "2026-01-06T16:54:00+00:00"
+    },
+    {
+      "id": "T0063",
+      "source": "A007",
+      "target": "A006",
+      "amount": 826.17,
+      "timestamp": "2026-01-06T17:18:00+00:00"
+    },
+    {
+      "id": "T0072",
+      "source": "A012",
+      "target": "A009",
+      "amount": 761.94,
+      "timestamp": "2026-01-06T18:08:00+00:00"
+    },
+    {
+      "id": "T0391",
+      "source": "A067",
+      "target": "A069",
+      "amount": 720.11,
+      "timestamp": "2026-01-06T18:36:00+00:00"
+    },
+    {
+      "id": "T0219",
+      "source": "A053",
+      "target": "A043",
+      "amount": 1309.26,
+      "timestamp": "2026-01-06T18:38:00+00:00"
+    },
+    {
+      "id": "T0064",
+      "source": "A067",
+      "target": "A020",
+      "amount": 98.49,
+      "timestamp": "2026-01-06T18:40:00+00:00"
+    },
+    {
+      "id": "T0317",
+      "source": "A053",
+      "target": "A034",
+      "amount": 317.49,
+      "timestamp": "2026-01-06T19:54:00+00:00"
+    },
+    {
+      "id": "T0400",
+      "source": "A005",
+      "target": "A040",
+      "amount": 1308.05,
+      "timestamp": "2026-01-06T20:44:00+00:00"
+    },
+    {
+      "id": "T0119",
+      "source": "A054",
+      "target": "A028",
+      "amount": 262.72,
+      "timestamp": "2026-01-06T21:26:00+00:00"
+    },
+    {
+      "id": "T0208",
+      "source": "A059",
+      "target": "A052",
+      "amount": 94.8,
+      "timestamp": "2026-01-06T21:34:00+00:00"
+    },
+    {
+      "id": "T0157",
+      "source": "A019",
+      "target": "A055",
+      "amount": 263.07,
+      "timestamp": "2026-01-06T22:28:00+00:00"
+    },
+    {
+      "id": "T0350",
+      "source": "A031",
+      "target": "A056",
+      "amount": 1387.56,
+      "timestamp": "2026-01-06T23:06:00+00:00"
+    },
+    {
+      "id": "T0283",
+      "source": "A006",
+      "target": "A016",
+      "amount": 1043.57,
+      "timestamp": "2026-01-06T23:39:00+00:00"
+    },
+    {
+      "id": "T0358",
+      "source": "A042",
+      "target": "A016",
+      "amount": 944.76,
+      "timestamp": "2026-01-06T23:44:00+00:00"
+    },
+    {
+      "id": "T0363",
+      "source": "A064",
+      "target": "A069",
+      "amount": 1172.47,
+      "timestamp": "2026-01-06T23:46:00+00:00"
+    },
+    {
+      "id": "T0075",
+      "source": "A069",
+      "target": "A038",
+      "amount": 864.12,
+      "timestamp": "2026-01-07T00:26:00+00:00"
+    },
+    {
+      "id": "T0418",
+      "source": "A056",
+      "target": "A009",
+      "amount": 812.01,
+      "timestamp": "2026-01-07T00:34:00+00:00"
+    },
+    {
+      "id": "T0334",
+      "source": "A009",
+      "target": "A065",
+      "amount": 893.85,
+      "timestamp": "2026-01-07T00:53:00+00:00"
+    },
+    {
+      "id": "T0121",
+      "source": "A058",
+      "target": "A017",
+      "amount": 1125.95,
+      "timestamp": "2026-01-07T01:02:00+00:00"
+    },
+    {
+      "id": "T0037",
+      "source": "A010",
+      "target": "A062",
+      "amount": 1146.11,
+      "timestamp": "2026-01-07T01:27:00+00:00"
+    },
+    {
+      "id": "T0138",
+      "source": "A021",
+      "target": "A059",
+      "amount": 1288.97,
+      "timestamp": "2026-01-07T01:51:00+00:00"
+    },
+    {
+      "id": "T0172",
+      "source": "A024",
+      "target": "A040",
+      "amount": 184.99,
+      "timestamp": "2026-01-07T02:19:00+00:00"
+    },
+    {
+      "id": "T0097",
+      "source": "A044",
+      "target": "A065",
+      "amount": 571.56,
+      "timestamp": "2026-01-07T02:25:00+00:00"
+    },
+    {
+      "id": "T0052",
+      "source": "A013",
+      "target": "A031",
+      "amount": 284.39,
+      "timestamp": "2026-01-07T02:26:00+00:00"
+    },
+    {
+      "id": "T0103",
+      "source": "A000",
+      "target": "A066",
+      "amount": 1297.29,
+      "timestamp": "2026-01-07T03:01:00+00:00"
+    },
+    {
+      "id": "T0254",
+      "source": "A053",
+      "target": "A022",
+      "amount": 297.1,
+      "timestamp": "2026-01-07T03:17:00+00:00"
+    },
+    {
+      "id": "T0128",
+      "source": "A034",
+      "target": "A042",
+      "amount": 461.2,
+      "timestamp": "2026-01-07T03:29:00+00:00"
+    },
+    {
+      "id": "T0267",
+      "source": "A049",
+      "target": "A058",
+      "amount": 532.0,
+      "timestamp": "2026-01-07T03:30:00+00:00"
+    },
+    {
+      "id": "T0055",
+      "source": "A056",
+      "target": "A070",
+      "amount": 155.11,
+      "timestamp": "2026-01-07T03:36:00+00:00"
+    },
+    {
+      "id": "T0207",
+      "source": "A065",
+      "target": "A000",
+      "amount": 927.57,
+      "timestamp": "2026-01-07T04:09:00+00:00"
+    },
+    {
+      "id": "T0222",
+      "source": "A044",
+      "target": "A042",
+      "amount": 781.65,
+      "timestamp": "2026-01-07T04:23:00+00:00"
+    },
+    {
+      "id": "T0192",
+      "source": "A033",
+      "target": "A025",
+      "amount": 606.69,
+      "timestamp": "2026-01-07T04:42:00+00:00"
+    },
+    {
+      "id": "T0004",
+      "source": "A071",
+      "target": "A025",
+      "amount": 1008.11,
+      "timestamp": "2026-01-07T04:48:00+00:00"
+    },
+    {
+      "id": "T0001",
+      "source": "A028",
+      "target": "A017",
+      "amount": 1036.33,
+      "timestamp": "2026-01-07T04:55:00+00:00"
+    },
+    {
+      "id": "T0123",
+      "source": "A064",
+      "target": "A054",
+      "amount": 1166.19,
+      "timestamp": "2026-01-07T05:36:00+00:00"
+    },
+    {
+      "id": "T0188",
+      "source": "A010",
+      "target": "A020",
+      "amount": 351.01,
+      "timestamp": "2026-01-07T06:43:00+00:00"
+    },
+    {
+      "id": "T0177",
+      "source": "A035",
+      "target": "A005",
+      "amount": 1364.53,
+      "timestamp": "2026-01-07T07:06:00+00:00"
+    },
+    {
+      "id": "T0276",
+      "source": "A016",
+      "target": "A026",
+      "amount": 114.68,
+      "timestamp": "2026-01-07T07:20:00+00:00"
+    },
+    {
+      "id": "T0345",
+      "source": "A064",
+      "target": "A049",
+      "amount": 658.54,
+      "timestamp": "2026-01-07T07:21:00+00:00"
+    },
+    {
+      "id": "T0060",
+      "source": "A036",
+      "target": "A054",
+      "amount": 981.3,
+      "timestamp": "2026-01-07T07:45:00+00:00"
+    },
+    {
+      "id": "T0305",
+      "source": "A028",
+      "target": "A013",
+      "amount": 503.16,
+      "timestamp": "2026-01-07T07:53:00+00:00"
+    },
+    {
+      "id": "T0017",
+      "source": "A020",
+      "target": "A059",
+      "amount": 543.65,
+      "timestamp": "2026-01-07T08:05:00+00:00"
+    },
+    {
+      "id": "T0262",
+      "source": "A013",
+      "target": "A029",
+      "amount": 670.64,
+      "timestamp": "2026-01-07T09:18:00+00:00"
+    },
+    {
+      "id": "T0300",
+      "source": "A016",
+      "target": "A071",
+      "amount": 102.77,
+      "timestamp": "2026-01-07T09:21:00+00:00"
+    },
+    {
+      "id": "T0071",
+      "source": "A001",
+      "target": "A058",
+      "amount": 877.2,
+      "timestamp": "2026-01-07T09:44:00+00:00"
+    },
+    {
+      "id": "T0339",
+      "source": "A059",
+      "target": "A057",
+      "amount": 959.96,
+      "timestamp": "2026-01-07T10:08:00+00:00"
+    },
+    {
+      "id": "T0248",
+      "source": "A002",
+      "target": "A050",
+      "amount": 398.78,
+      "timestamp": "2026-01-07T10:32:00+00:00"
+    },
+    {
+      "id": "T0020",
+      "source": "A034",
+      "target": "A008",
+      "amount": 311.16,
+      "timestamp": "2026-01-07T10:52:00+00:00"
+    },
+    {
+      "id": "T0036",
+      "source": "A039",
+      "target": "A030",
+      "amount": 99.94,
+      "timestamp": "2026-01-07T10:55:00+00:00"
+    },
+    {
+      "id": "T0066",
+      "source": "A030",
+      "target": "A051",
+      "amount": 185.44,
+      "timestamp": "2026-01-07T11:33:00+00:00"
+    },
+    {
+      "id": "T0369",
+      "source": "A024",
+      "target": "A047",
+      "amount": 956.06,
+      "timestamp": "2026-01-07T11:45:00+00:00"
+    },
+    {
+      "id": "T0047",
+      "source": "A062",
+      "target": "A027",
+      "amount": 764.14,
+      "timestamp": "2026-01-07T11:55:00+00:00"
+    },
+    {
+      "id": "T0346",
+      "source": "A005",
+      "target": "A057",
+      "amount": 1274.49,
+      "timestamp": "2026-01-07T12:06:00+00:00"
+    },
+    {
+      "id": "T0306",
+      "source": "A047",
+      "target": "A014",
+      "amount": 1072.4,
+      "timestamp": "2026-01-07T12:46:00+00:00"
+    },
+    {
+      "id": "T0387",
+      "source": "A068",
+      "target": "A002",
+      "amount": 892.1,
+      "timestamp": "2026-01-07T13:01:00+00:00"
+    },
+    {
+      "id": "T0116",
+      "source": "A060",
+      "target": "A009",
+      "amount": 648.47,
+      "timestamp": "2026-01-07T13:11:00+00:00"
+    },
+    {
+      "id": "T0101",
+      "source": "A055",
+      "target": "A065",
+      "amount": 179.59,
+      "timestamp": "2026-01-07T13:26:00+00:00"
+    },
+    {
+      "id": "T0303",
+      "source": "A036",
+      "target": "A039",
+      "amount": 505.27,
+      "timestamp": "2026-01-07T13:48:00+00:00"
+    },
+    {
+      "id": "T0110",
+      "source": "A038",
+      "target": "A036",
+      "amount": 310.05,
+      "timestamp": "2026-01-07T14:22:00+00:00"
+    },
+    {
+      "id": "T0168",
+      "source": "A051",
+      "target": "A031",
+      "amount": 442.56,
+      "timestamp": "2026-01-07T14:48:00+00:00"
+    },
+    {
+      "id": "T0085",
+      "source": "A069",
+      "target": "A004",
+      "amount": 1171.74,
+      "timestamp": "2026-01-07T15:03:00+00:00"
+    },
+    {
+      "id": "T0132",
+      "source": "A026",
+      "target": "A053",
+      "amount": 557.48,
+      "timestamp": "2026-01-07T15:29:00+00:00"
+    },
+    {
+      "id": "T0023",
+      "source": "A071",
+      "target": "A068",
+      "amount": 382.58,
+      "timestamp": "2026-01-07T15:37:00+00:00"
+    },
+    {
+      "id": "T0290",
+      "source": "A008",
+      "target": "A016",
+      "amount": 399.52,
+      "timestamp": "2026-01-07T15:50:00+00:00"
+    },
+    {
+      "id": "T0043",
+      "source": "A028",
+      "target": "A008",
+      "amount": 486.56,
+      "timestamp": "2026-01-07T16:38:00+00:00"
+    },
+    {
+      "id": "T0278",
+      "source": "A042",
+      "target": "A018",
+      "amount": 1108.33,
+      "timestamp": "2026-01-07T18:44:00+00:00"
+    },
+    {
+      "id": "T0163",
+      "source": "A033",
+      "target": "A043",
+      "amount": 405.93,
+      "timestamp": "2026-01-07T18:47:00+00:00"
+    },
+    {
+      "id": "T0099",
+      "source": "A022",
+      "target": "A033",
+      "amount": 72.79,
+      "timestamp": "2026-01-07T18:54:00+00:00"
+    },
+    {
+      "id": "T0274",
+      "source": "A011",
+      "target": "A027",
+      "amount": 905.55,
+      "timestamp": "2026-01-07T19:03:00+00:00"
+    },
+    {
+      "id": "T0291",
+      "source": "A070",
+      "target": "A041",
+      "amount": 545.65,
+      "timestamp": "2026-01-07T19:07:00+00:00"
+    },
+    {
+      "id": "T0352",
+      "source": "A049",
+      "target": "A052",
+      "amount": 1088.76,
+      "timestamp": "2026-01-07T19:15:00+00:00"
+    },
+    {
+      "id": "T0034",
+      "source": "A069",
+      "target": "A067",
+      "amount": 1287.52,
+      "timestamp": "2026-01-07T19:33:00+00:00"
+    },
+    {
+      "id": "T0409",
+      "source": "A041",
+      "target": "A037",
+      "amount": 442.96,
+      "timestamp": "2026-01-07T20:33:00+00:00"
+    },
+    {
+      "id": "T0354",
+      "source": "A071",
+      "target": "A049",
+      "amount": 412.12,
+      "timestamp": "2026-01-07T20:34:00+00:00"
+    },
+    {
+      "id": "T0078",
+      "source": "A070",
+      "target": "A019",
+      "amount": 395.84,
+      "timestamp": "2026-01-07T21:09:00+00:00"
+    },
+    {
+      "id": "T0292",
+      "source": "A067",
+      "target": "A037",
+      "amount": 646.13,
+      "timestamp": "2026-01-07T21:19:00+00:00"
+    },
+    {
+      "id": "T0184",
+      "source": "A015",
+      "target": "A071",
+      "amount": 1074.93,
+      "timestamp": "2026-01-07T21:33:00+00:00"
+    },
+    {
+      "id": "T0211",
+      "source": "A056",
+      "target": "A062",
+      "amount": 187.57,
+      "timestamp": "2026-01-07T22:15:00+00:00"
+    },
+    {
+      "id": "T0307",
+      "source": "A028",
+      "target": "A054",
+      "amount": 1186.31,
+      "timestamp": "2026-01-07T23:32:00+00:00"
+    }
+  ],
+  "summary": {
+    "accounts": 80,
+    "transactions": 444,
+    "edges": 430,
+    "flagged": 8
+  }
+}

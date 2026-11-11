@@ -1,0 +1,15 @@
+{
+  "seed": 42,
+  "metrics": {
+    "unit": "account",
+    "threshold": 50,
+    "true_positive": 7,
+    "false_positive": 1,
+    "true_negative": 72,
+    "false_negative": 0,
+    "precision": 0.875,
+    "recall": 1.0,
+    "f1": 0.9333
+  },
+  "note": "Synthetic fixture evaluation only; not evidence of real-world fraud detection performance."
+}
