@@ -1,10 +1,12 @@
 # Graph Fraud Lab
 
+[![Tests](https://github.com/yenerekaya/graph-fraud-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/yenerekaya/graph-fraud-lab/actions/workflows/tests.yml)
+
 **Follow the connections. Inspect the evidence.**
 
 An explainable transaction-graph investigation project built with Python and NetworkX. Generates synthetic transfers, detects temporal graph patterns, and exports a standalone interactive investigation dashboard. No API keys, cloud account, or frontend build step required.
 
-[Open the prebuilt investigation dashboard](artifacts/index.html)
+[Prebuilt investigation dashboard](artifacts/index.html) — download the HTML file and open it in your browser.
 
 ## Quick start
 
