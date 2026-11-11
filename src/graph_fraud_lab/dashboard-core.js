@@ -27,6 +27,34 @@
     const cell=value=>{let s=String(value);if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';};
     return [keys.join(','),...rows.map(r=>keys.map(k=>cell(r[k])).join(','))].join('\r\n');
   }
-  const api={filterTransactions,traceRoute,toCSV};
+  // Fit free simulation coordinates into the viewport without clamping nodes
+  // individually. Clamping had accumulated many nodes on the same border line.
+  function projectPositions(nodes,width,height,padding=50){
+    if(!nodes.length)return [];
+    const pad=Math.min(padding,width/4,height/4);
+    const xs=nodes.map(n=>n.x),ys=nodes.map(n=>n.y);
+    const minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+    const scale=Math.min((width-2*pad)/Math.max(1,maxX-minX),(height-2*pad)/Math.max(1,maxY-minY));
+    const cx=(minX+maxX)/2,cy=(minY+maxY)/2;
+    return nodes.map(n=>({...n,x:width/2+(n.x-cx)*scale,y:height/2+(n.y-cy)*scale}));
+  }
+  function advanceLayout(nodes,edges){
+    const byId=new Map(nodes.map(n=>[n.id,n]));
+    for(let i=0;i<nodes.length;i++){
+      const a=nodes[i];
+      for(let j=i+1;j<nodes.length;j++){
+        const b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+40;
+        const fx=dx*100/d2,fy=dy*100/d2;
+        a.vx+=fx;a.vy+=fy;b.vx-=fx;b.vy-=fy;
+      }
+      a.vx-=a.x*.0015;a.vy-=a.y*.0015;
+    }
+    for(const e of edges){
+      const a=byId.get(e.source),b=byId.get(e.target),dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,f=(d-80)*.001;
+      a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f;
+    }
+    for(const n of nodes){n.vx*=.8;n.vy*=.8;n.x+=n.vx;n.y+=n.vy;}
+  }
+  const api={filterTransactions,traceRoute,toCSV,projectPositions,advanceLayout};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.GraphLab=api;
 })(globalThis);

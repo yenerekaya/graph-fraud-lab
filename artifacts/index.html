@@ -41,7 +41,35 @@ select{font:inherit;color:var(--text);background:#19252b;border:1px solid #34454
     const cell=value=>{let s=String(value);if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';};
     return [keys.join(','),...rows.map(r=>keys.map(k=>cell(r[k])).join(','))].join('\r\n');
   }
-  const api={filterTransactions,traceRoute,toCSV};
+  // Fit free simulation coordinates into the viewport without clamping nodes
+  // individually. Clamping had accumulated many nodes on the same border line.
+  function projectPositions(nodes,width,height,padding=50){
+    if(!nodes.length)return [];
+    const pad=Math.min(padding,width/4,height/4);
+    const xs=nodes.map(n=>n.x),ys=nodes.map(n=>n.y);
+    const minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+    const scale=Math.min((width-2*pad)/Math.max(1,maxX-minX),(height-2*pad)/Math.max(1,maxY-minY));
+    const cx=(minX+maxX)/2,cy=(minY+maxY)/2;
+    return nodes.map(n=>({...n,x:width/2+(n.x-cx)*scale,y:height/2+(n.y-cy)*scale}));
+  }
+  function advanceLayout(nodes,edges){
+    const byId=new Map(nodes.map(n=>[n.id,n]));
+    for(let i=0;i<nodes.length;i++){
+      const a=nodes[i];
+      for(let j=i+1;j<nodes.length;j++){
+        const b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+40;
+        const fx=dx*100/d2,fy=dy*100/d2;
+        a.vx+=fx;a.vy+=fy;b.vx-=fx;b.vy-=fy;
+      }
+      a.vx-=a.x*.0015;a.vy-=a.y*.0015;
+    }
+    for(const e of edges){
+      const a=byId.get(e.source),b=byId.get(e.target),dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,f=(d-80)*.001;
+      a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f;
+    }
+    for(const n of nodes){n.vx*=.8;n.vy*=.8;n.x+=n.vx;n.y+=n.vy;}
+  }
+  const api={filterTransactions,traceRoute,toCSV,projectPositions,advanceLayout};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.GraphLab=api;
 })(globalThis);
 </script><script>
@@ -52,12 +80,12 @@ const m=D.evaluation;$('metrics').textContent=m?`Synthetic fixture · seed ${D.s
 function select(id){selected=id;const n=D.nodes.find(n=>n.id===id);if(!n){$('detail').textContent='No accounts in this dataset.';return;}$('detail').innerHTML=`<div class="label">Selected account</div><h2>${esc(n.id)}</h2><div class="score">${n.score}<span class="small"> / 100 signal score</span></div><p class="small">Received ${fmt(n.incoming)} · Sent ${fmt(n.outgoing)}<br>${n.in_degree} senders · ${n.out_degree} recipients</p>`+n.signals.map(s=>`<div class="signal"><strong>${esc(s.rule.replaceAll('_',' ').toUpperCase())} · +${s.points}</strong><p>${esc(s.reason)}</p></div>`).join('')+(n.signals.length?'':'<p>No configured rule triggered. This does not establish that an account is safe.</p>');const ids=new Set(n.signals.flatMap(s=>s.transaction_ids));const ev=document.createElement('div');ev.id='evidence';ev.innerHTML='<div class="label">Transaction evidence</div>'+D.transactions.filter(t=>ids.has(t.id)).map(t=>`<p>${esc(t.id)} · ${esc(t.source)} → ${esc(t.target)}<br>${fmt(t.amount)} units · ${esc(t.timestamp.replace('T',' '))}</p>`).join('');$('detail').append(ev);renderTable();draw()}
 function renderTable(){const q=$('search').value.toLowerCase(),min=+$('threshold').value;const rows=D.nodes.filter(n=>n.score>=min&&n.id.toLowerCase().includes(q));$('count').textContent=` / ${rows.length}`;$('queue').innerHTML=rows.map(n=>`<tr class="${n.id===selected?'active':''}"><td><button data-id="${esc(n.id)}">${esc(n.id)}</button></td><td>${n.score}</td><td>${n.signals.map(s=>esc(s.rule.replaceAll('_',' '))).join(', ')||'—'}</td><td>${n.in_degree} / ${n.out_degree}</td><td>${fmt(n.incoming)}</td></tr>`).join('')||'<tr><td colspan="5">No matching accounts.</td></tr>';$('queue').querySelectorAll('button').forEach(b=>b.onclick=()=>select(b.dataset.id))}
 $('search').oninput=renderTable;$('threshold').oninput=()=>{$('thresholdLabel').value=$('threshold').value;renderTable()};
-const canvas=$('network'),ctx=canvas.getContext('2d');let W=800,H=480;const pts=D.nodes.map((n,i)=>({...n,x:400+180*Math.cos(i*2.39996),y:240+170*Math.sin(i*2.39996),vx:0,vy:0})),byId=new Map(pts.map(n=>[n.id,n]));
-function visible(n){return !focused||n.score>=threshold||n.id===selected||routeNodes.has(n.id)}function draw(){ctx.clearRect(0,0,W,H);for(const e of D.edges){const a=byId.get(e.source),b=byId.get(e.target);if(!visible(a)||!visible(b))continue;const traced=routeEdges.has(JSON.stringify([a.id,b.id])),active=traced||a.id===selected||b.id===selected;ctx.strokeStyle=traced?'#79d6ed':active?'#b6ed7970':'#8aa0aa18';ctx.lineWidth=traced?3:active?1.4:.6;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();if(active){const angle=Math.atan2(b.y-a.y,b.x-a.x),x=b.x-10*Math.cos(angle),y=b.y-10*Math.sin(angle);ctx.fillStyle=traced?'#79d6ed':'#b6ed79';ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-6*Math.cos(angle-.4),y-6*Math.sin(angle-.4));ctx.lineTo(x-6*Math.cos(angle+.4),y-6*Math.sin(angle+.4));ctx.fill()}}
-for(const n of pts){if(!visible(n))continue;const active=n.id===selected;ctx.beginPath();ctx.arc(n.x,n.y,active?9:n.score>=threshold?6:3.5,0,Math.PI*2);ctx.fillStyle=n.score>=threshold?'#ff8d79':'#6d8895';ctx.fill();if(active){ctx.strokeStyle='#b6ed79';ctx.lineWidth=2;ctx.stroke()}if(active||n.score>=threshold){ctx.font='10px system-ui';ctx.fillStyle='#e6f0f1';ctx.fillText(n.id,n.x+11,n.y+3)}}}
-function resize(){const r=canvas.getBoundingClientRect(),oldW=W,oldH=H;W=r.width;H=r.height;canvas.width=W*devicePixelRatio;canvas.height=H*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);pts.forEach(n=>{n.x*=W/oldW;n.y*=H/oldH});draw()}new ResizeObserver(resize).observe(canvas);
-let ticks=0;function simulate(){for(const a of pts){for(const b of pts){if(a===b)continue;let dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+40;a.vx+=dx*100/d2;a.vy+=dy*100/d2}a.vx+=(W/2-a.x)*.0015;a.vy+=(H/2-a.y)*.0015}for(const e of D.edges){const a=byId.get(e.source),b=byId.get(e.target),dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,f=(d-80)*.001;a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f}for(const n of pts){n.vx*=.8;n.vy*=.8;n.x=Math.max(30,Math.min(W-65,n.x+n.vx));n.y=Math.max(25,Math.min(H-30,n.y+n.vy))}draw();if(++ticks<230)requestAnimationFrame(simulate)}
-canvas.onclick=e=>{const r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;const n=pts.filter(visible).find(n=>Math.hypot(n.x-x,n.y-y)<14);if(n)select(n.id)};$('focus').onclick=()=>{focused=!focused;$('focus').setAttribute('aria-pressed',focused);$('focus').textContent=focused?'Show all accounts':'Focus flagged';draw()};$('reset').onclick=()=>{focused=false;$('focus').setAttribute('aria-pressed','false');$('focus').textContent='Focus flagged';$('search').value='';$('threshold').value=0;$('thresholdLabel').value=0;select(D.nodes[0]?.id??null)};
+const canvas=$('network'),ctx=canvas.getContext('2d');let W=800,H=480;const pts=D.nodes.map((n,i)=>({...n,x:180*Math.cos(i*2.39996),y:170*Math.sin(i*2.39996),vx:0,vy:0})),byId=new Map(pts.map(n=>[n.id,n]));
+function visible(n){return !focused||n.score>=threshold||n.id===selected||routeNodes.has(n.id)}let projected=new Map();function draw(){ctx.clearRect(0,0,W,H);projected=new Map(GraphLab.projectPositions(pts.filter(visible),W,H).map(n=>[n.id,n]));for(const e of D.edges){const a=projected.get(e.source),b=projected.get(e.target);if(!a||!b)continue;const traced=routeEdges.has(JSON.stringify([a.id,b.id])),active=traced||a.id===selected||b.id===selected;ctx.strokeStyle=traced?'#79d6ed':active?'#b6ed7970':'#8aa0aa18';ctx.lineWidth=traced?3:active?1.4:.6;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();if(active){const angle=Math.atan2(b.y-a.y,b.x-a.x),x=b.x-10*Math.cos(angle),y=b.y-10*Math.sin(angle);ctx.fillStyle=traced?'#79d6ed':'#b6ed79';ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-6*Math.cos(angle-.4),y-6*Math.sin(angle-.4));ctx.lineTo(x-6*Math.cos(angle+.4),y-6*Math.sin(angle+.4));ctx.fill()}}
+for(const n of projected.values()){const active=n.id===selected;ctx.beginPath();ctx.arc(n.x,n.y,active?9:n.score>=threshold?6:3.5,0,Math.PI*2);ctx.fillStyle=n.score>=threshold?'#ff8d79':'#6d8895';ctx.fill();if(active){ctx.strokeStyle='#b6ed79';ctx.lineWidth=2;ctx.stroke()}if(active||n.score>=threshold){ctx.font='10px system-ui';ctx.fillStyle='#e6f0f1';ctx.fillText(n.id,n.x+11,n.y+3)}}}
+function resize(){const r=canvas.getBoundingClientRect();W=r.width;H=r.height;canvas.width=W*devicePixelRatio;canvas.height=H*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);draw()}new ResizeObserver(resize).observe(canvas);
+let ticks=0;function simulate(){GraphLab.advanceLayout(pts,D.edges);draw();if(++ticks<230)requestAnimationFrame(simulate)}
+canvas.onclick=e=>{const r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;const n=[...projected.values()].filter(n=>Math.hypot(n.x-x,n.y-y)<14).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y))[0];if(n)select(n.id)};$('focus').onclick=()=>{focused=!focused;$('focus').setAttribute('aria-pressed',focused);$('focus').textContent=focused?'Show all accounts':'Focus flagged';draw()};$('reset').onclick=()=>{focused=false;$('focus').setAttribute('aria-pressed','false');$('focus').textContent='Focus flagged';$('search').value='';$('threshold').value=0;$('thresholdLabel').value=0;select(D.nodes[0]?.id??null)};
 let txPage=0,filteredTransactions=[];
 const pageSize=25;
 $('accountIds').innerHTML=D.nodes.map(n=>`<option value="${esc(n.id)}"></option>`).join('');

@@ -23,7 +23,7 @@ function setup(data){
  for(const script of scripts)vm.runInContext(script,sandbox);
  return {nodes,sandbox};
 }
-const {nodes:n}=setup(payload);
+const {nodes:n,sandbox:ui}=setup(payload);
 assert.ok(n.get('stats').innerHTML.includes('444'));
 assert.ok(n.get('txStatus').textContent.includes('444 of 444'));
 assert.equal(n.get('prevTx').disabled,true);
@@ -39,8 +39,11 @@ assert.ok(n.get('txStatus').textContent.includes('444 of 444'));
 n.get('txFrom').value='2026-01-03';n.get('txTo').value='2026-01-01';n.get('txFrom').oninput();
 assert.equal(n.get('downloadCSV').disabled,true);
 assert.equal(n.get('txStatus').textContent,'Start must precede end.');
+const clickPoint=vm.runInContext("projected.get('R0')",ui);
+n.get('network').onclick({clientX:clickPoint.x,clientY:clickPoint.y});
+assert.ok(n.get('detail').innerHTML.includes('<h2>R0</h2>'));
 const empty={...payload,nodes:[],edges:[],transactions:[],evaluation:null,summary:{accounts:0,transactions:0,flagged:0,edges:0}};
 const {nodes:e}=setup(empty);
 assert.equal(e.get('detail').textContent,'No accounts in this dataset.');
 assert.ok(e.get('txStatus').textContent.includes('0 of 0'));
-console.log('Dashboard controller: 13 smoke assertions passed (no visual verification)');
+console.log('Dashboard controller: 14 smoke assertions passed (no visual verification)');
