@@ -75,7 +75,7 @@ Every run creates `neo4j/gfl_accounts.csv`, `neo4j/gfl_transfers.csv`, `neo4j/im
 
 The graph model is `(GFLAccount)-[:SENT]->(GFLTransfer)-[:TO]->(GFLAccount)`. Individual transfers are nodes with unique IDs, preserving parallel payments. Account scores and rule names are imported from Python.
 
-See [Neo4j import instructions](docs/neo4j.md). Export generation and CSV round trips are tested; a live Neo4j import has not been verified in this environment.
+See [Neo4j import instructions](docs/neo4j.md). CSV round trips and live imports were verified against Neo4j Community 5.26.33, including repeated import, record counts, amounts, timestamps, scores, and empty rule lists.
 
 ## Bring your own synthetic data
 

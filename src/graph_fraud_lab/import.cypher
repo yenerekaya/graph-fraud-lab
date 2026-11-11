@@ -6,7 +6,7 @@ CREATE CONSTRAINT gfl_transfer_id IF NOT EXISTS FOR (t:GFLTransfer) REQUIRE t.id
 LOAD CSV WITH HEADERS FROM 'file:///gfl_accounts.csv' AS row
 MERGE (a:GFLAccount {id: row.id})
 SET a.score = toInteger(row.score),
-    a.rules = CASE WHEN row.rules = '' THEN [] ELSE split(row.rules, '|') END;
+    a.rules = CASE WHEN coalesce(row.rules, '') = '' THEN [] ELSE split(row.rules, '|') END;
 
 LOAD CSV WITH HEADERS FROM 'file:///gfl_transfers.csv' AS row
 MATCH (a:GFLAccount {id: row.source}), (b:GFLAccount {id: row.target})

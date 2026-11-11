@@ -21,4 +21,14 @@ Both node types have unique IDs. Transfer nodes keep all timestamps and amounts,
 
 Re-running the same unchanged export is idempotent because the script uses `MERGE`. Use a fresh, dedicated database for a changed dataset: IDs are reused across generator seeds and the script neither removes obsolete records nor rewires old endpoints. The importer performs no deletion.
 
-The seed-42 demo expects 80 account nodes and 444 transfer nodes. CSV escaping and record preservation are tested automatically. Live import behavior remains unverified until these files are run against a Neo4j server.
+The seed-42 demo expects 80 account nodes and 444 transfer nodes. CSV escaping and record preservation are tested automatically. Live import was verified against Neo4j Community 5.26.33. The opt-in integration suite checks repeated import (80 accounts, 444 transfers, 888 relationships), transfer endpoints, account scores, empty rule lists, amounts, timestamps, and the example queries.
+
+Enable it only against a dedicated seed-42 test container with the exports mounted at `/var/lib/neo4j/import`:
+
+```bash
+export GFL_NEO4J_CONTAINER=your-test-container
+export GFL_NEO4J_PASSWORD=your-test-password
+python -m pytest tests/test_neo4j_live.py -q
+```
+
+The tests do not delete records. They import the fixture twice using `MERGE`. Empty CSV rule cells are converted to `[]` explicitly because `LOAD CSV` represents them as null.
